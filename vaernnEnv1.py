@@ -26,8 +26,8 @@ class vaernnEnv1(gym.Env):
 
     def setting(self, _id=-1, mode=p.DIRECT, sec=0.01):
         if _id == -1:
-            self.sim = robot_sim.robot_sim(vaernnEnv0.global_id, mode, sec)
-            vaernnEnv0.global_id += 1
+            self.sim = robot_sim.robot_sim(vaernnEnv1.global_id, mode, sec)
+            vaernnEnv1.global_id += 1
         else:
             self.sim = robot_sim.robot_sim(_id, mode, sec)
 
@@ -39,11 +39,11 @@ class vaernnEnv1(gym.Env):
         self.reset()
 
     def copy(self, _id=-1):
-        new_env = vaernnEnv0()
+        new_env = vaernnEnv1()
         
         if _id == -1:
-            new_env.sim = self.sim.copy(vaernnEnv0.global_id)
-            vaernnEnv0.global_id += 1
+            new_env.sim = self.sim.copy(vaernnEnv1.global_id)
+            vaernnEnv1.global_id += 1
         else:
             new_env.sim = self.sim.copy(_id)
 
@@ -86,6 +86,8 @@ class vaernnEnv1(gym.Env):
         rewardContact = -1.0 if isComtact else 0.0
 
         rewardMove = 0.1 if self.sim.vy>=0.0 else 0.0
+
+        reward = rewardContact + rewardMove
 
         return reward
 

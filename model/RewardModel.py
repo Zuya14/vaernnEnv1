@@ -14,7 +14,7 @@ class RewardModel(jit.ScriptModule):
 
   @jit.script_method
   def forward(self, state, belief):
-    hidden = self.act_fn(self.fc1(torch.cat([state, belief], dim=1)))
+    hidden = self.act_fn(self.fc1(torch.cat([state, belief], dim=-1)))
     hidden = self.act_fn(self.fc2(hidden))
     # reward = self.fc3(hidden).squeeze(dim=1)
     reward = self.fc3(hidden)

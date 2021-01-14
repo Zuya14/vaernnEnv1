@@ -35,7 +35,7 @@ class robot_sim:
             w = self.w,
             sec=self.sec,
             dynamic_counter=self.dynamic_counter, 
-            interval=self.interval
+            interval=self.dynamic_interval
             )
 
         new_sim.updateRobotInfo()
@@ -115,11 +115,12 @@ class robot_sim:
         if self.dynamic_counter > self.dynamic_interval:
             self.dynamic_counter -= self.dynamic_interval
         self.updateDynamicBody()
-        print(self.dynamic_counter)
+
         return self.done
         
     def calcAction(self, action):
-        tmp = 2.0 * (action - 0.5)
+        # tmp = 2.0 * (action - 0.5)
+        tmp = action
 
         v_scale     = 1.0
         theta_scale = math.pi / 2.0
@@ -151,6 +152,7 @@ class robot_sim:
         yaw = p.getEulerFromQuaternion(ori)[2]
         scanDist = bullet_lidar.scanDistance(self.phisicsClient, pos, yaw, height=0.9)
         self.scanDist = scanDist / bullet_lidar.maxLen
+        self.scanDist = self.scanDist.astype(np.float32)
         
         return self.scanDist
 

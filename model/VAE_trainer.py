@@ -96,8 +96,9 @@ class VAE_trainer:
 
             mu_array.append(mu.detach())
 
-        mse_loss /= len(train_data)
-        KLD_loss /= len(train_data)
+        data_num = train_data.view(-1, 1080).size()[0]
+        mse_loss /= data_num
+        KLD_loss /= data_num
 
         return mse_loss, KLD_loss, torch.stack(mu_array, dim=0)
 
@@ -122,7 +123,8 @@ class VAE_trainer:
                         
                 mu_array.append(mu.detach())
 
-        test_loss /= len(test_data)
+        data_num = test_data.view(-1, 1080).size()[0]
+        test_loss /= data_num
 
         return test_loss, torch.stack(mu_array, dim=0)
 
