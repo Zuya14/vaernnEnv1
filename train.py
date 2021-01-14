@@ -79,7 +79,8 @@ def planner(rnn_model, reward_model, old_actions, old_states, state, planning_ho
         diff_actions = (diff_action_mean + diff_action_std_dev * torch.randn(candidates, planning_horizon, action_size, device=device))
         diff_actions.clamp_(min=-1.0, max=1.0) 
 
-        actions = calcAction2(action0, diff_actions, sec)
+        # actions = calcAction2(action0, diff_actions, sec)
+        actions = calcAction3(action0, diff_actions*sec)
 
         # if old_states is not None:
         #     act = torch.cat([old_actions.view(1, -1, action_size), actions[:, 0].view(-1, 1, action_size)], dim=1).expand(candidates, -1, -1) 
@@ -162,7 +163,6 @@ def calcAction(action0, diff_actions, sec):
         
     return torch.cat([v_s, theta_s, w_s], dim=-1)
 
-@jit.script
 # candidates * horizon * action_size
 def calcAction2(action0, diff_actions, sec):
     # !! --- diff_actions \in [-1, 1] --- !! 
@@ -213,6 +213,59 @@ def calcAction2(action0, diff_actions, sec):
         w_s[:, t]     = (w_s[:, t-1] + delta_w[:, t]).clamp_(-w_scale, w_scale)
         
     return torch.cat([v_s.view(candidates, T, 1), theta_s.view(candidates, T, 1), w_s.view(candidates, T, 1)], dim=-1)
+
+@jit.script
+# candidates * horizon * action_size
+def calcAction3(action0, diff_actions):
+    # !! --- diff_actions \in [-1, 1] --- !! 
+
+    T = diff_actions.size()[1]
+    candidates = diff_actions.size()[0]
+
+    actions = torch.zeros_like(diff_actions)
+    v_s     = actions[:, :, 0]
+    theta_s = actions[:, :, 1]
+    w_s     = actions[:, :, 2]
+
+    v_scale     = 1.0
+    theta_scale = math.pi / 2.0
+    w_scale     = math.pi / 4.0
+
+    limit_v     = v_scale     
+    limit_theta = theta_scale 
+    limit_w     = w_scale     
+
+    delta_v     = diff_actions[:, :, 0] * limit_v
+    delta_theta = diff_actions[:, :, 1] * limit_theta
+    delta_w     = diff_actions[:, :, 2] * limit_w
+
+    v_s[:, 0]     = (action0[:, 0] + delta_v[:, 0]).clamp_(-v_scale, v_scale)
+
+    theta_s[:, 0] = action0[:, 1] + delta_theta[:, 0]
+
+    for c in range(candidates):
+        if theta_s[c, 0] > math.pi:
+            theta_s[c, 0] -= 2*math.pi
+        elif theta_s[c, 0] < -math.pi:
+            theta_s[c, 0] += 2*math.pi
+
+    w_s[:, 0]     = (action0[:, 2] + delta_w[:, 0]).clamp_(-w_scale, w_scale)
+
+    for t in range(1, T):
+        v_s[:, t]     = (v_s[:, t-1] + delta_v[:, t]).clamp_(-v_scale, v_scale)
+
+        theta_s[:, t] = theta_s[:, t-1] + delta_theta[:, t]
+
+        for c in range(candidates):
+            if theta_s[c, t] > math.pi:
+                theta_s[c, t] -= 2*math.pi
+            elif theta_s[c, t] < -math.pi:
+                theta_s[c, t] += 2*math.pi
+
+        w_s[:, t]     = (w_s[:, t-1] + delta_w[:, t]).clamp_(-w_scale, w_scale)
+        
+    return torch.cat([v_s.view(candidates, T, 1), theta_s.view(candidates, T, 1), w_s.view(candidates, T, 1)], dim=-1)
+
 
 if __name__ == '__main__':
 

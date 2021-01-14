@@ -156,6 +156,13 @@ class robot_sim:
         
         return self.scanDist
 
+    def observe2d(self, bullet_lidar):
+        pos, ori = self.getRobotPosInfo()
+        yaw = p.getEulerFromQuaternion(ori)[2]
+        scanPoints = bullet_lidar.scanPosLocal(self.phisicsClient, pos, yaw, height=0.9)[:, :2]
+        
+        return scanPoints
+
     def render(self, bullet_lidar):
         pos, ori = self.getRobotPosInfo()
         yaw = p.getEulerFromQuaternion(ori)[2]
