@@ -1,3 +1,6 @@
 python train.py --rnn-hidden 21 --sec 0.1 --id "run0"
-python train.py --rnn-hidden 21 --sec 0.1 --id "run1"
+python train.py --rnn-hidden 21 --sec 0.1 --id "run1" --init-episode 10
+python train.py --rnn-hidden 21 --sec 0.1 --id "run2" --init-episode 100
+python train.py --rnn-hidden 21 --sec 0.1 --id "run3" --init-episode 100
+python train.py --rnn-hidden 21 --sec 0.1 --id "run4" --init-episode 100
  

@@ -33,7 +33,7 @@ class VAE_trainer:
             loss = mse + KLD
             loss.backward()
             
-            nn.utils.clip_grad_norm_(self.vae.parameters(), 1000, norm_type=2)
+            nn.utils.clip_grad_norm_(self.vae.parameters(), 100, norm_type=2)
             
             mse_loss += mse.item()
             KLD_loss += KLD.item()

@@ -15,6 +15,7 @@ import gym
 import cv2
 
 import torch
+from torch import jit
 from torchvision.utils import save_image
 
 from model.VAE_trainer import VAE_trainer
@@ -31,6 +32,8 @@ register(
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
+max_step = 200
+
 def collect_init_episode(memory_size, collect_num, min_step, clientReset=False, sample_rate=0.001, sec=0.01):
     env = gym.make('vaernn-v1')
     env.setting(sec=sec)
@@ -46,6 +49,7 @@ def collect_init_episode(memory_size, collect_num, min_step, clientReset=False, 
 
         step = 0
         while True:
+        # for _ in range(max_step):
             pre_action = env.sample_random_action()
             next_observation, reward, done, _ = env.step(pre_action)
 
@@ -158,6 +162,7 @@ def calcAction(action0, diff_actions, sec):
         
     return torch.cat([v_s, theta_s, w_s], dim=-1)
 
+@jit.script
 # candidates * horizon * action_size
 def calcAction2(action0, diff_actions, sec):
     # !! --- diff_actions \in [-1, 1] --- !! 
@@ -209,20 +214,6 @@ def calcAction2(action0, diff_actions, sec):
         
     return torch.cat([v_s.view(candidates, T, 1), theta_s.view(candidates, T, 1), w_s.view(candidates, T, 1)], dim=-1)
 
-def trainsition(states, hiddens, actions):
-    
-    inp = z[:, 0:args.chunk_size, :]
-    out = inp
-
-    for i in range(args.test_predict_step):
-
-        predict, hidden = rnn_train.rnn(act[:, i:i+args.chunk_size, :].view(args.test_batch_size, args.chunk_size, -1), inp.view(args.test_batch_size, args.chunk_size, -1))
-
-        out = torch.cat([out, predict], dim=1)
-
-        new_inp = torch.cat([inp, predict], dim=1)
-        inp = new_inp[:, 1:, :]
-
 if __name__ == '__main__':
 
     s_time = datetime.datetime.now()
@@ -248,7 +239,7 @@ if __name__ == '__main__':
     parser.add_argument('--candidates', type=int, default=100)
     parser.add_argument('--top_candidates', type=int, default=10)
 
-    parser.add_argument('--action-noise', type=float, default=0.2)
+    parser.add_argument('--action-noise', type=float, default=0.3)
 
     parser.add_argument('--models-vae', type=str, default='')
     parser.add_argument('--models-rnn', type=str, default='')
@@ -316,10 +307,12 @@ if __name__ == '__main__':
 
 
     train_plot_data = plot_graph.Plot_Graph_Data(out_dir, 'train_loss', {'vae_loss': [], 'mse_loss': [], 'KLD_loss': [], 'rnn_loss': [], 'reward_loss': []})
-    reward_plot_data = plot_graph.Plot_Graph_Data(out_dir, 'reward', {'reward': []})
+    reward_plot_data = plot_graph.Plot_Graph_Data(out_dir, 'reward', {'reward': [], 'reward_per_step': []})
     plotGraph = plot_graph.Plot_Graph([train_plot_data, reward_plot_data])
 
     ''' ---- Initialize EpisodeMemory ---- '''
+
+    print("Initialize EpisodeMemory")
 
     memory = EpisodeMemory(mem_size=args.memory_size)
 
@@ -332,6 +325,8 @@ if __name__ == '__main__':
         memory.extend(mem)
 
     ''' ---- Start Training ---- '''
+
+    print("Start Training")
 
     env = gym.make('vaernn-v1')
     env.setting(sec=args.sec)
@@ -371,10 +366,9 @@ if __name__ == '__main__':
             old_actions = torch.tensor([env.sim.action], device=device).view(1, 1, -1)
             old_states  = vae_train.vae(torch.tensor([observation], device=device).view(-1, 1, 1080))[1].view(1, 1, -1)
 
-            # old_actions = torch.tensor([env.sim.action], device=device).view(1, 1, -1)
-            # old_states  = vae_train.vae(torch.tensor([observation], device=device).view(-1, 1, 1080))[1].view(1, 1, -1)
-
-            while True:
+            step = 1
+            # while True:
+            for i in range(1, max_step+1):
 
                 state = vae_train.vae(torch.tensor([observation], device=device).view(-1, 1, 1080))[1].view(1, 1, -1)
 
@@ -393,37 +387,12 @@ if __name__ == '__main__':
                     old_actions = old_actions[:, -args.chunk_size:, :]
                     old_states  = old_states[:, -args.chunk_size:, :]
 
-                # if old_states is None:
-                #     old_actions = torch.tensor([env.sim.action], device=device).view(1, 1, -1)
-                #     diff_action = planner(rnn_train.rnn, reward_train.rewardModel, old_actions, None, state, args.planning_horizon, args.max_iters, args.candidates, args.top_candidates, args.sec)
-                    
-                #     diff_action = diff_action + args.action_noise * torch.randn_like(diff_action)
-                #     diff_action.clamp_(min=-1.0, max=1.0)
-                    
-                #     next_observation, reward, done, _ = env.step(diff_action.cpu().numpy())
-
-                #     action = torch.tensor([env.sim.action], device=device).view(1, 1, -1)
-                #     old_states  = state
-                # else:
-                #     diff_action = planner(rnn_train.rnn, reward_train.rewardModel, old_actions, old_states, state, args.planning_horizon, args.max_iters, args.candidates, args.top_candidates, args.sec)
-
-                #     diff_action = diff_action + args.action_noise * torch.randn_like(diff_action)
-                #     diff_action.clamp_(min=-1.0, max=1.0) 
-                    
-                #     next_observation, reward, done, _ = env.step(diff_action.cpu().numpy())
-
-                #     action = torch.tensor([env.sim.action], device=device).view(1, 1, -1)
-                #     old_actions = torch.cat([old_actions, action], dim=1)
-                #     old_states  = torch.cat([old_states, state], dim=1)
-
-                #     if old_actions.size()[1] > args.chunk_size:
-                #         old_actions = old_actions[:, -args.chunk_size:, :]
-                #         old_states  = old_states[:, -args.chunk_size:, :]
-
                 episode.append(observation, env.sim.action, reward, done)
                 observation = next_observation[:1080]
 
                 reward_sum += reward
+
+                step = i
 
                 if done:
                     robotPos, robotOri = env.sim.getRobotPosInfo()
@@ -432,34 +401,80 @@ if __name__ == '__main__':
 
             memory.append(episode)
 
-            plotGraph.addDatas('reward', ['reward'], [reward_sum])
+            plotGraph.addDatas('reward', ['reward', 'reward_per_step'], [reward_sum, reward_sum/step])
 
         ''' ---- Save Model ---- '''
-        plotGraph.plot('train_loss')
-        plotGraph.plot('reward')
         
         if epoch%10 == 0:
             vae_train.save(out_dir+'/vae.pth')
             rnn_train.save(out_dir+'/rnn.pth')
             reward_train.save(out_dir+'/reward.pth')
 
-            # plotGraph.plot('train_loss')
-            # plotGraph.plot('reward')
+            plotGraph.plot('train_loss')
+            plotGraph.plot('reward')
 
-            print('epoch [{}/{}], vae_loss: {:.4f}, rnn_loss: {:.4f} reward_loss: {} '.format(
-                epoch + 1,
-                args.epochs,
-                vae_loss,
-                rnn_loss,
-                reward_loss)
-                )       
+        print('epoch [{}/{}], vae_loss: {:.4f}, rnn_loss: {:.4f} reward_loss: {} '.format(
+            epoch,
+            args.epochs,
+            vae_loss,
+            rnn_loss,
+            reward_loss)
+            )       
 
         ''' ---- Test ---- '''
 
         if epoch % (args.epochs//10) == 0:
             vae_train.vae.eval()
             rnn_train.rnn.eval()
+            reward_train.rewardModel.eval()
 
+            with torch.no_grad():
+                reward_sum = 0.0
+
+                env.reset(clientReset=False)
+                observation = env.observe()[:1080]
+
+                old_actions = torch.tensor([env.sim.action], device=device).view(1, 1, -1)
+                old_states  = vae_train.vae(torch.tensor([observation], device=device).view(-1, 1, 1080))[1].view(1, 1, -1)
+
+                height = 800
+                width = 800
+                
+                fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')  
+                video = cv2.VideoWriter(out_dir + '/test{}.mp4'.format(epoch), fourcc, 10, (height, width))
+    
+                img = imshowLocalDistance('vaernn_v0', height, width, env.lidar, next_observation, maxLen=1.0, show=False, line=True)
+                video.write(img)
+
+                # while True:
+                for _ in range(max_step):
+
+                    state = vae_train.vae(torch.tensor([observation], device=device).view(-1, 1, 1080))[1].view(1, 1, -1)
+
+                    diff_action = planner(rnn_train.rnn, reward_train.rewardModel, old_actions, old_states, state, args.planning_horizon, args.max_iters, args.candidates, args.top_candidates, args.sec)
+                    
+                    next_observation, reward, done, _ = env.step(diff_action.cpu().numpy())
+
+                    action = torch.tensor([env.sim.action.astype(np.float32)], device=device).view(1, 1, -1).float()
+                    old_actions = torch.cat([old_actions, action], dim=1)
+                    old_states  = torch.cat([old_states, state], dim=1)
+
+                    if old_actions.size()[1] > args.chunk_size:
+                        old_actions = old_actions[:, -args.chunk_size:, :]
+                        old_states  = old_states[:, -args.chunk_size:, :]
+
+                    observation = next_observation[:1080]
+
+                    img = imshowLocalDistance('vaernn_v0', height, width, env.lidar, next_observation, maxLen=1.0, show=False, line=True)
+                    video.write(img)
+
+                    reward_sum += reward
+
+                    if done:
+                        break
+
+                video.release()
+                
             with torch.no_grad():
                 datas_observations, datas_actions, datas_rewards, datas_dones, next_observations = memory.sample(n=args.test_batch_size, L=args.chunk_size+args.test_predict_step)
 
