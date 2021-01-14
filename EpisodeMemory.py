@@ -82,11 +82,17 @@ class EpisodeMemory:
 
         datas = [self.episodes[i].sample(L+1) for i in indeces]
 
-        datas_observations  = rnn.pad_sequence([torch.tensor(data[0][:L]) for data in datas], batch_first=True).float()
-        next_observations = rnn.pad_sequence([torch.tensor(data[0][L]) for data in datas], batch_first=True).float()
-        datas_actions      = rnn.pad_sequence([torch.tensor(data[1][:L]) for data in datas], batch_first=True).float()
-        datas_rewards      = rnn.pad_sequence([torch.tensor(data[2][:L]) for data in datas], batch_first=True).float()
-        datas_dones        = rnn.pad_sequence([torch.tensor(data[3][:L]) for data in datas], batch_first=True).float()
+        # datas_observations  = rnn.pad_sequence([torch.tensor(data[0][:L]) for data in datas], batch_first=True).float()
+        # next_observations = rnn.pad_sequence([torch.tensor(data[0][L]) for data in datas], batch_first=True).float()
+        # datas_actions      = rnn.pad_sequence([torch.tensor(data[1][:L]) for data in datas], batch_first=True).float()
+        # datas_rewards      = rnn.pad_sequence([torch.tensor(data[2][:L]) for data in datas], batch_first=True).float()
+        # datas_dones        = rnn.pad_sequence([torch.tensor(data[3][:L]) for data in datas], batch_first=True).float()
+
+        datas_observations  = rnn.pad_sequence([torch.tensor(data[0][:-1]) for data in datas], batch_first=True).float()
+        next_observations = rnn.pad_sequence([torch.tensor(data[0][-1]) for data in datas], batch_first=True).float()
+        datas_actions      = rnn.pad_sequence([torch.tensor(data[1][:-1]) for data in datas], batch_first=True).float()
+        datas_rewards      = rnn.pad_sequence([torch.tensor(data[2][:-1]) for data in datas], batch_first=True).float()
+        datas_dones        = rnn.pad_sequence([torch.tensor(data[3][:-1]) for data in datas], batch_first=True).float()
 
         return datas_observations, datas_actions, datas_rewards, datas_dones, next_observations
 

@@ -231,7 +231,7 @@ if __name__ == '__main__':
     minLen = 0.
     lidar = bullet_lidar(startDeg, endDeg, resolusion, maxLen, minLen)
 
-    action = np.array([1.0, 0.5, 0.5])
+    action = np.array([0.0]*3)
 
     while True:
         sim.step(action=action)

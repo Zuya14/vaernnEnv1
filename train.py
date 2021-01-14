@@ -46,7 +46,6 @@ def collect_init_episode(memory_size, collect_num, min_step, clientReset=False, 
 
         step = 0
         while True:
-
             pre_action = env.sample_random_action()
             next_observation, reward, done, _ = env.step(pre_action)
 
@@ -317,7 +316,8 @@ if __name__ == '__main__':
 
 
     train_plot_data = plot_graph.Plot_Graph_Data(out_dir, 'train_loss', {'vae_loss': [], 'mse_loss': [], 'KLD_loss': [], 'rnn_loss': [], 'reward_loss': []})
-    plotGraph = plot_graph.Plot_Graph([train_plot_data])
+    reward_plot_data = plot_graph.Plot_Graph_Data(out_dir, 'reward', {'reward': []})
+    plotGraph = plot_graph.Plot_Graph([train_plot_data, reward_plot_data])
 
     ''' ---- Initialize EpisodeMemory ---- '''
 
@@ -336,11 +336,11 @@ if __name__ == '__main__':
     env = gym.make('vaernn-v1')
     env.setting(sec=args.sec)
 
-    ''' ---- Model fitting ---- '''
-
     f = open(out_dir + '/done_position.txt', 'w')
 
     for epoch in range(1, args.epochs+1):
+
+        ''' ---- Model fitting ---- '''
 
         datas_observations, datas_actions, datas_rewards, datas_dones, next_observations = memory.sample(n=args.batch_size, L=args.chunk_size)
         mse_loss, KLD_loss, z  = vae_train.train2(datas_observations.view(-1, args.batch_size, 1080))
@@ -358,6 +358,7 @@ if __name__ == '__main__':
         ''' ---- Data collection ---- '''
 
         with torch.no_grad():
+            reward_sum = 0.0
             vae_train.vae.eval()
             rnn_train.rnn.eval()
             reward_train.rewardModel.eval()
@@ -422,20 +423,28 @@ if __name__ == '__main__':
                 episode.append(observation, env.sim.action, reward, done)
                 observation = next_observation[:1080]
 
+                reward_sum += reward
+
                 if done:
                     robotPos, robotOri = env.sim.getRobotPosInfo()
                     f.write('{:4d}: x:{:2.4f}, y:{:2.4f}, t:{:2.4f}\n'.format(epoch, robotPos[0], robotPos[1], robotOri[2])) 
                     break
 
             memory.append(episode)
-                
 
+            plotGraph.addDatas('reward', ['reward'], [reward_sum])
+
+        ''' ---- Save Model ---- '''
+        plotGraph.plot('train_loss')
+        plotGraph.plot('reward')
+        
         if epoch%10 == 0:
             vae_train.save(out_dir+'/vae.pth')
             rnn_train.save(out_dir+'/rnn.pth')
             reward_train.save(out_dir+'/reward.pth')
 
-            plotGraph.plot('train_loss')
+            # plotGraph.plot('train_loss')
+            # plotGraph.plot('reward')
 
             print('epoch [{}/{}], vae_loss: {:.4f}, rnn_loss: {:.4f} reward_loss: {} '.format(
                 epoch + 1,
@@ -444,6 +453,8 @@ if __name__ == '__main__':
                 rnn_loss,
                 reward_loss)
                 )       
+
+        ''' ---- Test ---- '''
 
         if epoch % (args.epochs//10) == 0:
             vae_train.vae.eval()

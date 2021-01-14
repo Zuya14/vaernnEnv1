@@ -85,7 +85,7 @@ class vaernnEnv1(gym.Env):
 
         rewardContact = -1.0 if isComtact else 0.0
 
-        rewardMove = 0.1 if self.sim.vy>=0.0 else 0.0
+        rewardMove = self.sim.vy
 
         reward = rewardContact + rewardMove
 
