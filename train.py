@@ -96,20 +96,22 @@ def planner(rnn_model, reward_model, old_actions, old_states, state, planning_ho
         for t in range(1, planning_horizon):
             predicts, hiddens = rnn_model(act, inp)
             reward = reward_model(predicts, hiddens.view(candidates, 1, -1))
-            reward_sum += reward
+            reward_sum[:, t-1] += reward.view(candidates, 1)
 
             act = torch.cat([act, actions[:, t, :].view(candidates, 1, action_size)], dim=1)
             inp = torch.cat([inp, predicts.view(candidates, 1, -1)], dim=1)
 
         predicts, hiddens = rnn_model(act, inp)
         reward = reward_model(predicts, hiddens.view(candidates, 1, -1))
-        reward_sum += reward
+        reward_sum[:, planning_horizon-1] += reward.view(candidates, 1)
 
         returns = reward_sum.view(candidates, planning_horizon).sum(dim=1)
+        # print(reward_sum)
+
         _, topk = returns.topk(top_candidates, dim=0, largest=True, sorted=False)
         best_diff_actions = diff_actions[topk].reshape(top_candidates, planning_horizon, action_size)
         diff_action_mean, diff_action_std_dev = best_diff_actions.mean(dim=0, keepdim=True), best_diff_actions.std(dim=0, unbiased=False, keepdim=True)
-      
+
     return diff_action_mean[0, 0, :].view(action_size)
 
 # horizon * candidates * action_size
