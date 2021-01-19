@@ -31,7 +31,8 @@ class vaernnEnv1(gym.Env):
         else:
             self.sim = robot_sim.robot_sim(_id, mode, sec)
 
-        self.action_space = gym.spaces.Box(low=0.0, high=1.0, shape=(3,))
+        # self.action_space = gym.spaces.Box(low=0.0, high=1.0, shape=(3,))
+        self.action_space = gym.spaces.Box(low=-1.0, high=1.0, shape=(3,))
 
         self.lidar = self.createLidar()
 
@@ -86,9 +87,9 @@ class vaernnEnv1(gym.Env):
     def get_reward(self):
         isComtact = self.sim.isContacts()
 
-        rewardContact = -1.0 if isComtact else 0.0
+        # rewardContact = -1.0 if isComtact else 0.0
         # rewardContact = -100.0 if isComtact else 0.0
-        # rewardContact = -10.0 if isComtact else 0.0
+        rewardContact = -10.0 if isComtact else 0.0
 
         rewardMove = self.sim.vy
 

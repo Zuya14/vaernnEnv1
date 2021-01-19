@@ -41,6 +41,8 @@ def collect_init_episode(memory_size, collect_num, min_step, clientReset=False, 
 
     collect_count = 0
 
+    done_step = 0
+
     while collect_count < collect_num:
         episode = Episode()
 
@@ -59,7 +61,9 @@ def collect_init_episode(memory_size, collect_num, min_step, clientReset=False, 
 
             step += 1
             if done:
-                break
+                done_step += 1
+                if done_step >= min_step//2:
+                    break
         
         if step >= min_step:
             collect_count += 1
@@ -422,6 +426,7 @@ if __name__ == '__main__':
             old_states  = vae_train.vae(torch.tensor([observation], device=device).view(-1, 1, 1080))[1].view(1, 1, -1)
 
             step = 1
+            done_step = 0
             # while True:
             for i in range(1, max_step+1):
 
@@ -450,9 +455,11 @@ if __name__ == '__main__':
                 step = i
 
                 if done:
-                    robotPos, robotOri = env.sim.getRobotPosInfo()
-                    f.write('{:4d}: x:{:2.4f}, y:{:2.4f}, t:{:2.4f}\n'.format(epoch, robotPos[0], robotPos[1], robotOri[2])) 
-                    break
+                    done_step += 1
+                    if done_step >= args.chunk_size//2:
+                        robotPos, robotOri = env.sim.getRobotPosInfo()
+                        f.write('{:4d}: x:{:2.4f}, y:{:2.4f}, t:{:2.4f}\n'.format(epoch, robotPos[0], robotPos[1], robotOri[2])) 
+                        break
 
             memory.append(episode)
 
