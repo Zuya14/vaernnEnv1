@@ -31,7 +31,8 @@ class vaernnEnv1(gym.Env):
         else:
             self.sim = robot_sim.robot_sim(_id, mode, sec)
 
-        self.action_space = gym.spaces.Box(low=0.0, high=1.0, shape=(3,))
+        # self.action_space = gym.spaces.Box(low=0.0, high=1.0, shape=(3,))
+        self.action_space = gym.spaces.Box(low=-1.0, high=1.0, shape=(3,))
 
         self.lidar = self.createLidar()
 
@@ -53,9 +54,9 @@ class vaernnEnv1(gym.Env):
 
         return new_env
 
-    def reset(self, x=0.0, y=0.0, theta=0.0, vx=0.0, vy=0.0, w=0.0, action=None, clientReset=False):
+    def reset(self, x=0.0, y=0.0, theta=0.0, vx=0.0, vy=0.0, w=0.0, dynamic_counter=0.0, interval=3.0, action=None, clientReset=False):
         assert self.sim is not None, print("call setting!!") 
-        self.sim.reset(x=x, y=y, theta=theta, vx=vx, vy=vy, w=w, sec=self.sec, action=action, clientReset=clientReset)
+        self.sim.reset(x=x, y=y, theta=theta, vx=vx, vy=vy, w=w, sec=self.sec, dynamic_counter=dynamic_counter, interval=interval, action=action, clientReset=clientReset)
         return None
 
     def createLidar(self):
@@ -80,14 +81,22 @@ class vaernnEnv1(gym.Env):
     def observe(self):
         return self.sim.observe(self.lidar)
 
+    def observe2d(self):
+        return self.sim.observe2d(self.lidar)
+
     def get_reward(self):
         isComtact = self.sim.isContacts()
 
-        rewardContact = -1.0 if isComtact else 0.0
+        # rewardContact = -1.0 if isComtact else 0.0
+        # rewardContact = -100.0 if isComtact else 0.0
+        rewardContact = -10.0 if isComtact else 0.0
 
         rewardMove = self.sim.vy
 
+        # rewardDirection = math.cos(self.sim.action[1])
+
         reward = rewardContact + rewardMove
+        # reward = rewardContact + rewardMove + rewardDirection
 
         return reward
 
