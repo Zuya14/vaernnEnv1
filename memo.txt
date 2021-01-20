@@ -12,3 +12,13 @@ python train.py --rnn-hidden 21 --sec 0.1 --id "run6" --init-episode 100
 python train.py --rnn-hidden 21 --sec 0.1 --id "run7" --init-episode 100
 // rewardContact = -10.0 
 python train.py --rnn-hidden 21 --sec 0.1 --id "run8" --init-episode 100
+
+python train.py --rnn-hidden 21 --sec 0.1 --id "run9" --init-episode 100 --batch-size 128 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 100
+python train.py --rnn-hidden 21 --sec 0.1 --id "run9/more100" --init-episode 100 --batch-size 128 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 100 --models-vae "./result/run9/vae.pth" --models-rnn "./result/run9/rnn.pth" --models-reward "./result/run9/reward.pth"
+
+// add rewardDirection
+python train.py --rnn-hidden 21 --sec 0.1 --id "run10" --init-episode 100 --batch-size 128 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 100
+
+// dynamic reset
+python train.py --rnn-hidden 21 --sec 0.1 --id "run11" --init-episode 100 --batch-size 128 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 100
+python train.py --rnn-hidden 21 --sec 0.1 --id "run11/more100" --init-episode 100 --batch-size 128 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 100 --models-vae "./result/run11/vae.pth" --models-rnn "./result/run11/rnn.pth" --models-reward "./result/run11/reward.pth"

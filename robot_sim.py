@@ -9,6 +9,8 @@ import copy
 
 import lidar_util
 
+import random
+
 robot_name = "urdf/robot.urdf"
 dynamic_body0 = "urdf/door.urdf"
 
@@ -47,7 +49,10 @@ class robot_sim:
             self.phisicsClient = bc.BulletClient(connection_mode=self.mode)
 
         self.sec = sec
-        self.dynamic_counter = dynamic_counter
+        if dynamic_counter < 0.0:
+            self.dynamic_counter = random.uniform(0.0, dynamic_counter)
+        else:
+            self.dynamic_counter = dynamic_counter
         self.dynamic_interval = interval
 
         self.vx = vx

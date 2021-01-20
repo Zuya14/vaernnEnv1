@@ -33,6 +33,7 @@ register(
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 max_step = 200
+dynamic_counter = -1.0
 
 def collect_init_episode(memory_size, collect_num, min_step, clientReset=False, sample_rate=0.001, sec=0.01):
     env = gym.make('vaernn-v1')
@@ -46,7 +47,7 @@ def collect_init_episode(memory_size, collect_num, min_step, clientReset=False, 
     while collect_count < collect_num:
         episode = Episode()
 
-        env.reset(clientReset=clientReset)
+        env.reset(clientReset=clientReset, dynamic_counter=dynamic_counter)
         observation = env.observe()
 
         step = 0
@@ -419,7 +420,7 @@ if __name__ == '__main__':
 
             episode = Episode()
 
-            env.reset(clientReset=False)
+            env.reset(clientReset=False, dynamic_counter=dynamic_counter)
             observation = env.observe()[:1080]
 
             old_actions = torch.tensor([env.sim.action], device=device).view(1, 1, -1)
@@ -493,7 +494,7 @@ if __name__ == '__main__':
             with torch.no_grad():
                 reward_sum = 0.0
 
-                env.reset(clientReset=False)
+                env.reset(clientReset=False, dynamic_counter=dynamic_counter)
                 observation = env.observe()[:1080]
 
                 old_actions = torch.tensor([env.sim.action], device=device).view(1, 1, -1)
