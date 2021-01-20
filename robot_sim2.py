@@ -10,7 +10,7 @@ import copy
 import lidar_util
 
 robot_name = "urdf/robot.urdf"
-dynamic_body0 = "urdf/door.urdf"
+dynamic_body0 = "urdf/door2.urdf"
 
 class robot_sim:
 
