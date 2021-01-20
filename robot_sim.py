@@ -50,7 +50,7 @@ class robot_sim:
 
         self.sec = sec
         if dynamic_counter < 0.0:
-            self.dynamic_counter = random.uniform(0.0, dynamic_counter)
+            self.dynamic_counter = random.uniform(0.0, interval)
         else:
             self.dynamic_counter = dynamic_counter
         self.dynamic_interval = interval
@@ -157,7 +157,9 @@ class robot_sim:
         yaw = p.getEulerFromQuaternion(ori)[2]
         scanDist = bullet_lidar.scanDistance(self.phisicsClient, pos, yaw, height=0.9)
         self.scanDist = scanDist / bullet_lidar.maxLen
+        # self.scanDist = (scanDist + np.random.normal(0, 0.03, scanDist.shape[0])) / bullet_lidar.maxLen
         self.scanDist = self.scanDist.astype(np.float32)
+        # self.scanDist = np.clip(self.scanDist.astype(np.float32), 0.0, 1.0)
         
         return self.scanDist
 

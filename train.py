@@ -34,6 +34,8 @@ device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 max_step = 200
 dynamic_counter = -1.0
+# interval = 4.0
+interval = 6.0
 
 def collect_init_episode(memory_size, collect_num, min_step, clientReset=False, sample_rate=0.001, sec=0.01):
     env = gym.make('vaernn-v1')
@@ -47,7 +49,7 @@ def collect_init_episode(memory_size, collect_num, min_step, clientReset=False, 
     while collect_count < collect_num:
         episode = Episode()
 
-        env.reset(clientReset=clientReset, dynamic_counter=dynamic_counter)
+        env.reset(clientReset=clientReset, dynamic_counter=dynamic_counter, interval=interval)
         observation = env.observe()
 
         step = 0
@@ -393,6 +395,18 @@ if __name__ == '__main__':
 
     f = open(out_dir + '/done_position.txt', 'w')
 
+    for _ in range(args.threads):
+        datas_observations, datas_actions, datas_rewards, datas_dones, next_observations = memory.sample(n=args.batch_size, L=args.chunk_size)
+        mse_loss, KLD_loss, z  = vae_train.train2(datas_observations.view(-1, args.batch_size, 1080))
+        _, _, z2 = vae_train.train2(next_observations)
+        vae_loss = mse_loss+KLD_loss
+
+        z  = z.detach()
+        z2 = z2.detach()
+
+        rnn_loss, predicts, hiddens = rnn_train.train(z.view(args.batch_size, args.chunk_size, latent_size), datas_actions, z2.view(args.batch_size, 1, latent_size))
+        reward_loss = reward_train.train(predicts.view(args.batch_size, -1).detach(), hiddens.view(args.batch_size, -1).detach(), datas_rewards[:, -1].view(args.batch_size, 1)) 
+
     for epoch in range(1, args.epochs+1):
 
         ''' ---- Model fitting ---- '''
@@ -420,7 +434,7 @@ if __name__ == '__main__':
 
             episode = Episode()
 
-            env.reset(clientReset=False, dynamic_counter=dynamic_counter)
+            env.reset(clientReset=False, dynamic_counter=dynamic_counter, interval=interval)
             observation = env.observe()[:1080]
 
             old_actions = torch.tensor([env.sim.action], device=device).view(1, 1, -1)
@@ -494,7 +508,7 @@ if __name__ == '__main__':
             with torch.no_grad():
                 reward_sum = 0.0
 
-                env.reset(clientReset=False, dynamic_counter=dynamic_counter)
+                env.reset(clientReset=False, dynamic_counter=dynamic_counter, interval=interval)
                 observation = env.observe()[:1080]
 
                 old_actions = torch.tensor([env.sim.action], device=device).view(1, 1, -1)

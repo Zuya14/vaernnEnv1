@@ -1,0 +1,357 @@
+start: 2021-01-20 11:44:15.787099
+load: ./result/run11/vae.pth
+load: ./result/run11/rnn.pth
+load: ./result/run11/reward.pth
+Initialize EpisodeMemory
+pybullet build time: Jul  8 2020 18:24:12
+start: 2021-01-20 16:36:15.922597
+Initialize EpisodeMemory
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+Start Training
+epoch [1/100], vae_loss: 4.6014, rnn_loss: 0.0146 reward_loss: 0.0009302390972152352 
+epoch [2/100], vae_loss: 4.5720, rnn_loss: 0.0148 reward_loss: 0.0015299858059734106 
+epoch [3/100], vae_loss: 4.5152, rnn_loss: 0.0148 reward_loss: 0.0006225154502317309 
+epoch [4/100], vae_loss: 4.5733, rnn_loss: 0.0142 reward_loss: 0.0006762664415873587 
+epoch [5/100], vae_loss: 4.5747, rnn_loss: 0.0130 reward_loss: 0.0009043673635460436 
+epoch [6/100], vae_loss: 4.5777, rnn_loss: 0.0168 reward_loss: 0.0006620878120884299 
+epoch [7/100], vae_loss: 4.6085, rnn_loss: 0.0129 reward_loss: 0.0007997878128662705 
+epoch [8/100], vae_loss: 4.5871, rnn_loss: 0.0153 reward_loss: 0.0006482965545728803 
+epoch [9/100], vae_loss: 4.5870, rnn_loss: 0.0153 reward_loss: 0.0006163471844047308 
+epoch [10/100], vae_loss: 4.5787, rnn_loss: 0.0136 reward_loss: 0.0006109136156737804 
+epoch [11/100], vae_loss: 4.5967, rnn_loss: 0.0146 reward_loss: 0.0005499122198671103 
+epoch [12/100], vae_loss: 4.6009, rnn_loss: 0.0135 reward_loss: 0.007209791336208582 
+epoch [13/100], vae_loss: 4.6053, rnn_loss: 0.0149 reward_loss: 0.0007306677289307117 
+epoch [14/100], vae_loss: 4.5958, rnn_loss: 0.0153 reward_loss: 0.0004946762346662581 
+epoch [15/100], vae_loss: 4.6108, rnn_loss: 0.0132 reward_loss: 0.0004430338158272207 
+epoch [16/100], vae_loss: 4.5667, rnn_loss: 0.0132 reward_loss: 0.000675334595143795 
+epoch [17/100], vae_loss: 4.6509, rnn_loss: 0.0126 reward_loss: 0.000442909833509475 
+epoch [18/100], vae_loss: 4.5548, rnn_loss: 0.0136 reward_loss: 0.0004265181487426162 
+epoch [19/100], vae_loss: 4.5494, rnn_loss: 0.0139 reward_loss: 0.0003432733938097954 
+epoch [20/100], vae_loss: 4.5904, rnn_loss: 0.0133 reward_loss: 0.0005574368988163769 
+epoch [21/100], vae_loss: 4.6237, rnn_loss: 0.0141 reward_loss: 0.000421804201323539 
+epoch [22/100], vae_loss: 4.5700, rnn_loss: 0.0132 reward_loss: 0.0003339627874083817 
+epoch [23/100], vae_loss: 4.5883, rnn_loss: 0.0161 reward_loss: 0.0005860241362825036 
+epoch [24/100], vae_loss: 4.5785, rnn_loss: 0.0163 reward_loss: 0.00047492218436673284 
+epoch [25/100], vae_loss: 4.5878, rnn_loss: 0.0152 reward_loss: 0.0005908907623961568 
+epoch [26/100], vae_loss: 4.5561, rnn_loss: 0.0139 reward_loss: 0.0004540778463706374 
+epoch [27/100], vae_loss: 4.5887, rnn_loss: 0.0136 reward_loss: 0.0004811632970813662 
+epoch [28/100], vae_loss: 4.5805, rnn_loss: 0.0146 reward_loss: 0.00041221361607313156 
+epoch [29/100], vae_loss: 4.5406, rnn_loss: 0.0141 reward_loss: 0.0005211774841882288 
+epoch [30/100], vae_loss: 4.5975, rnn_loss: 0.0148 reward_loss: 0.00037221124512143433 
+epoch [31/100], vae_loss: 4.5524, rnn_loss: 0.0144 reward_loss: 0.006564219482243061 
+epoch [32/100], vae_loss: 4.5638, rnn_loss: 0.0130 reward_loss: 0.00036491884384304285 
+epoch [33/100], vae_loss: 4.5837, rnn_loss: 0.0139 reward_loss: 0.0006843130686320364 
+epoch [34/100], vae_loss: 4.5455, rnn_loss: 0.0148 reward_loss: 0.0005143042071722448 
+epoch [35/100], vae_loss: 4.5818, rnn_loss: 0.0138 reward_loss: 0.0004948050482198596 
+epoch [36/100], vae_loss: 4.5794, rnn_loss: 0.0121 reward_loss: 0.00037749926559627056 
+epoch [37/100], vae_loss: 4.6043, rnn_loss: 0.0126 reward_loss: 0.0004647744935937226 
+epoch [38/100], vae_loss: 4.5787, rnn_loss: 0.0123 reward_loss: 0.0004071581643074751 
+epoch [39/100], vae_loss: 4.5806, rnn_loss: 0.0119 reward_loss: 0.0003747782320715487 
+epoch [40/100], vae_loss: 4.6078, rnn_loss: 0.0128 reward_loss: 0.000386865867767483 
+epoch [41/100], vae_loss: 4.5503, rnn_loss: 0.0136 reward_loss: 0.0004451541171874851 
+epoch [42/100], vae_loss: 4.5638, rnn_loss: 0.0117 reward_loss: 0.0004606954171322286 
+epoch [43/100], vae_loss: 4.5464, rnn_loss: 0.0126 reward_loss: 0.0004886345122940838 
+epoch [44/100], vae_loss: 4.5749, rnn_loss: 0.0130 reward_loss: 0.00045195850543677807 
+epoch [45/100], vae_loss: 4.5778, rnn_loss: 0.0117 reward_loss: 0.0005506325978785753 
+epoch [46/100], vae_loss: 4.6081, rnn_loss: 0.0144 reward_loss: 0.00042564020259305835 
+epoch [47/100], vae_loss: 4.5725, rnn_loss: 0.0136 reward_loss: 0.00043081550393253565 
+epoch [48/100], vae_loss: 4.5474, rnn_loss: 0.0146 reward_loss: 0.00045904202852398157 
+epoch [49/100], vae_loss: 4.5586, rnn_loss: 0.0127 reward_loss: 0.0004329275689087808 
+epoch [50/100], vae_loss: 4.6027, rnn_loss: 0.0123 reward_loss: 0.0003437558771111071 
+epoch [51/100], vae_loss: 4.5456, rnn_loss: 0.0131 reward_loss: 0.0005514014046639204 
+epoch [52/100], vae_loss: 4.5889, rnn_loss: 0.0116 reward_loss: 0.00032708904473111033 
+epoch [53/100], vae_loss: 4.5988, rnn_loss: 0.0126 reward_loss: 0.00035874921013601124 
+epoch [54/100], vae_loss: 4.6044, rnn_loss: 0.0117 reward_loss: 0.0004155679780524224 
+epoch [55/100], vae_loss: 4.5463, rnn_loss: 0.0133 reward_loss: 0.006756934802979231 
+epoch [56/100], vae_loss: 4.5933, rnn_loss: 0.0125 reward_loss: 0.006514641456305981 
+epoch [57/100], vae_loss: 4.5526, rnn_loss: 0.0124 reward_loss: 0.00041089256410486996 
+epoch [58/100], vae_loss: 4.5509, rnn_loss: 0.0134 reward_loss: 0.006403298117220402 
+epoch [59/100], vae_loss: 4.5757, rnn_loss: 0.0140 reward_loss: 0.0004892180440947413 
+epoch [60/100], vae_loss: 4.6041, rnn_loss: 0.0120 reward_loss: 0.0003879440191667527 
+epoch [61/100], vae_loss: 4.5957, rnn_loss: 0.0127 reward_loss: 0.0002576717233750969 
+epoch [62/100], vae_loss: 4.6122, rnn_loss: 0.0128 reward_loss: 0.0004986119456589222 
+epoch [63/100], vae_loss: 4.5695, rnn_loss: 0.0120 reward_loss: 0.0004832897102460265 
+epoch [64/100], vae_loss: 4.5697, rnn_loss: 0.0124 reward_loss: 0.00041756025166250765 
+epoch [65/100], vae_loss: 4.5667, rnn_loss: 0.0126 reward_loss: 0.006441166158765554 
+epoch [66/100], vae_loss: 4.5255, rnn_loss: 0.0124 reward_loss: 0.00048011878971010447 
+epoch [67/100], vae_loss: 4.5497, rnn_loss: 0.0128 reward_loss: 0.0003857609408441931 
+epoch [68/100], vae_loss: 4.5715, rnn_loss: 0.0128 reward_loss: 0.012621579691767693 
+epoch [69/100], vae_loss: 4.5857, rnn_loss: 0.0122 reward_loss: 0.0004124260158278048 
+epoch [70/100], vae_loss: 4.5594, rnn_loss: 0.0126 reward_loss: 0.0003424794995225966 
+epoch [71/100], vae_loss: 4.5852, rnn_loss: 0.0115 reward_loss: 0.0004601139225997031 
+epoch [72/100], vae_loss: 4.5748, rnn_loss: 0.0120 reward_loss: 0.0003606193931773305 
+epoch [73/100], vae_loss: 4.5565, rnn_loss: 0.0108 reward_loss: 0.0004523005918599665 
+epoch [74/100], vae_loss: 4.5964, rnn_loss: 0.0121 reward_loss: 0.00039228578680194914 
+epoch [75/100], vae_loss: 4.5354, rnn_loss: 0.0126 reward_loss: 0.0005106119206175208 
+epoch [76/100], vae_loss: 4.6033, rnn_loss: 0.0110 reward_loss: 0.00039970269426703453 
+epoch [77/100], vae_loss: 4.5713, rnn_loss: 0.0125 reward_loss: 0.0003891724336426705 
+epoch [78/100], vae_loss: 4.5647, rnn_loss: 0.0121 reward_loss: 0.012552798725664616 
+epoch [79/100], vae_loss: 4.5959, rnn_loss: 0.0130 reward_loss: 0.0005140609573572874 
+epoch [80/100], vae_loss: 4.5991, rnn_loss: 0.0102 reward_loss: 0.0003528083034325391 
+epoch [81/100], vae_loss: 4.5565, rnn_loss: 0.0108 reward_loss: 0.0003708560252562165 
+epoch [82/100], vae_loss: 4.5278, rnn_loss: 0.0105 reward_loss: 0.006738319061696529 
+epoch [83/100], vae_loss: 4.5221, rnn_loss: 0.0101 reward_loss: 0.012608528137207031 
+epoch [84/100], vae_loss: 4.5416, rnn_loss: 0.0111 reward_loss: 0.006423847284168005 
+epoch [85/100], vae_loss: 4.5574, rnn_loss: 0.0114 reward_loss: 0.00044288087519817054 
+epoch [86/100], vae_loss: 4.5594, rnn_loss: 0.0109 reward_loss: 0.00038056232733651996 
+epoch [87/100], vae_loss: 4.6057, rnn_loss: 0.0084 reward_loss: 0.00044375439756549895 
+epoch [88/100], vae_loss: 4.5758, rnn_loss: 0.0099 reward_loss: 0.00046032824320718646 
+epoch [89/100], vae_loss: 4.5649, rnn_loss: 0.0090 reward_loss: 0.00046566204400733113 
+epoch [90/100], vae_loss: 4.5668, rnn_loss: 0.0100 reward_loss: 0.000475116801680997 
+epoch [91/100], vae_loss: 4.5592, rnn_loss: 0.0119 reward_loss: 0.000438717775978148 
+epoch [92/100], vae_loss: 4.5802, rnn_loss: 0.0103 reward_loss: 0.00042348343413323164 
+epoch [93/100], vae_loss: 4.5626, rnn_loss: 0.0098 reward_loss: 0.00028712989296764135 
+epoch [94/100], vae_loss: 4.5480, rnn_loss: 0.0113 reward_loss: 0.00047256253310479224 
+epoch [95/100], vae_loss: 4.5571, rnn_loss: 0.0100 reward_loss: 0.00036722319782711565 
+epoch [96/100], vae_loss: 4.5209, rnn_loss: 0.0099 reward_loss: 0.0003561689518392086 
+epoch [97/100], vae_loss: 4.5915, rnn_loss: 0.0098 reward_loss: 0.0003798555117100477 
+epoch [98/100], vae_loss: 4.5990, rnn_loss: 0.0098 reward_loss: 0.00036680669290944934 
+epoch [99/100], vae_loss: 4.5630, rnn_loss: 0.0116 reward_loss: 0.00035923480754718184 
+epoch [100/100], vae_loss: 4.5297, rnn_loss: 0.0102 reward_loss: 0.0004464361700229347 
+save:epoch 100
+2021-01-20 17:06:06.684300
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+Start Training
+epoch [1/100], vae_loss: 254.0116, rnn_loss: 0.1415 reward_loss: 0.0007369732484221458 
+epoch [2/100], vae_loss: 5.3916, rnn_loss: 0.0896 reward_loss: 0.0006717339274473488 
+epoch [3/100], vae_loss: 5.1240, rnn_loss: 0.0966 reward_loss: 0.0006964162457734346 
+epoch [4/100], vae_loss: 5.0128, rnn_loss: 0.0567 reward_loss: 0.0007104364922270179 
+epoch [5/100], vae_loss: 4.9370, rnn_loss: 0.0582 reward_loss: 0.0006106623914092779 
+epoch [6/100], vae_loss: 4.8697, rnn_loss: 0.0457 reward_loss: 0.0005824751569889486 
+epoch [7/100], vae_loss: 4.8809, rnn_loss: 0.0412 reward_loss: 0.0005690324469469488 
+epoch [8/100], vae_loss: 4.9014, rnn_loss: 0.0466 reward_loss: 0.0006820718990638852 
+epoch [9/100], vae_loss: 4.7922, rnn_loss: 0.0462 reward_loss: 0.0005678063607774675 
+epoch [10/100], vae_loss: 4.8185, rnn_loss: 0.0353 reward_loss: 0.0004812035185750574 
+epoch [11/100], vae_loss: 4.8076, rnn_loss: 0.0400 reward_loss: 0.0006305982242338359 
+epoch [12/100], vae_loss: 4.7965, rnn_loss: 0.0376 reward_loss: 0.0007708579069003463 
+epoch [13/100], vae_loss: 4.7902, rnn_loss: 0.0345 reward_loss: 0.0006023889291100204 
+epoch [14/100], vae_loss: 4.7218, rnn_loss: 0.0426 reward_loss: 0.0005953844520263374 
+epoch [15/100], vae_loss: 4.7947, rnn_loss: 0.0359 reward_loss: 0.0008734922157600522 
+epoch [16/100], vae_loss: 4.7603, rnn_loss: 0.0277 reward_loss: 0.000718367169611156 
+epoch [17/100], vae_loss: 4.7189, rnn_loss: 0.0355 reward_loss: 0.0005707943346351385 
+epoch [18/100], vae_loss: 4.7730, rnn_loss: 0.0343 reward_loss: 0.0005463619017973542 
+epoch [19/100], vae_loss: 4.7531, rnn_loss: 0.0325 reward_loss: 0.0005119019187986851 
+epoch [20/100], vae_loss: 4.7460, rnn_loss: 0.0319 reward_loss: 0.0005021404940634966 
+epoch [21/100], vae_loss: 4.7486, rnn_loss: 0.0280 reward_loss: 0.0005506830057129264 
+epoch [22/100], vae_loss: 4.7092, rnn_loss: 0.0308 reward_loss: 0.0010452276328578591 
+epoch [23/100], vae_loss: 4.7601, rnn_loss: 0.0288 reward_loss: 0.0005894758505746722 
+epoch [24/100], vae_loss: 4.7130, rnn_loss: 0.0335 reward_loss: 0.0006535161519423127 
+epoch [25/100], vae_loss: 4.7648, rnn_loss: 0.0288 reward_loss: 0.0007002030033618212 
+epoch [26/100], vae_loss: 4.7390, rnn_loss: 0.0289 reward_loss: 0.0006163990474306047 
+epoch [27/100], vae_loss: 4.6969, rnn_loss: 0.0305 reward_loss: 0.0005976583925075829 
+epoch [28/100], vae_loss: 4.7066, rnn_loss: 0.0320 reward_loss: 0.0006962408078834414 
+epoch [29/100], vae_loss: 4.7436, rnn_loss: 0.0268 reward_loss: 0.0006086780922487378 
+epoch [30/100], vae_loss: 4.7193, rnn_loss: 0.0254 reward_loss: 0.0006941843894310296 
+epoch [31/100], vae_loss: 4.7194, rnn_loss: 0.0254 reward_loss: 0.0006932232063263655 
+epoch [32/100], vae_loss: 4.6609, rnn_loss: 0.0278 reward_loss: 0.0005053536151535809 
+epoch [33/100], vae_loss: 4.7222, rnn_loss: 0.0269 reward_loss: 0.0006680800579488277 
+epoch [34/100], vae_loss: 4.6755, rnn_loss: 0.0225 reward_loss: 0.0006315962527878582 
+epoch [35/100], vae_loss: 4.6621, rnn_loss: 0.0295 reward_loss: 0.0006470696534961462 
+epoch [36/100], vae_loss: 4.6752, rnn_loss: 0.0240 reward_loss: 0.0007000132463872433 
+epoch [37/100], vae_loss: 4.6588, rnn_loss: 0.0256 reward_loss: 0.0005305451923049986 
+epoch [38/100], vae_loss: 4.6335, rnn_loss: 0.0274 reward_loss: 0.0007792558171786368 
+epoch [39/100], vae_loss: 4.6675, rnn_loss: 0.0249 reward_loss: 0.0007480662316083908 
+epoch [40/100], vae_loss: 4.6690, rnn_loss: 0.0243 reward_loss: 0.00046440819278359413 
+epoch [41/100], vae_loss: 4.6746, rnn_loss: 0.0235 reward_loss: 0.0006956628640182316 
+epoch [42/100], vae_loss: 4.6687, rnn_loss: 0.0262 reward_loss: 0.0006233584717847407 
+epoch [43/100], vae_loss: 4.7339, rnn_loss: 0.0240 reward_loss: 0.0005998051492497325 
+epoch [44/100], vae_loss: 4.7090, rnn_loss: 0.0214 reward_loss: 0.0005777173792012036 
+epoch [45/100], vae_loss: 4.6948, rnn_loss: 0.0238 reward_loss: 0.0008935646037571132 
+epoch [46/100], vae_loss: 4.6671, rnn_loss: 0.0200 reward_loss: 0.000604442204348743 
+epoch [47/100], vae_loss: 4.7096, rnn_loss: 0.0208 reward_loss: 0.0005247836234048009 
+epoch [48/100], vae_loss: 4.6711, rnn_loss: 0.0220 reward_loss: 0.0009372844942845404 
+epoch [49/100], vae_loss: 4.6310, rnn_loss: 0.0257 reward_loss: 0.0008083813590928912 
+epoch [50/100], vae_loss: 4.6365, rnn_loss: 0.0236 reward_loss: 0.0006966734072193503 
+epoch [51/100], vae_loss: 4.6530, rnn_loss: 0.0205 reward_loss: 0.0007291026995517313 
+epoch [52/100], vae_loss: 4.6719, rnn_loss: 0.0204 reward_loss: 0.0008427452994510531 
+epoch [53/100], vae_loss: 4.6757, rnn_loss: 0.0209 reward_loss: 0.0004389677196741104 
+epoch [54/100], vae_loss: 4.7423, rnn_loss: 0.0208 reward_loss: 0.0004234762745909393 
+epoch [55/100], vae_loss: 4.6596, rnn_loss: 0.0223 reward_loss: 0.0005154937971383333 
+epoch [56/100], vae_loss: 4.6698, rnn_loss: 0.0242 reward_loss: 0.0006259767105802894 
+epoch [57/100], vae_loss: 4.6492, rnn_loss: 0.0227 reward_loss: 0.0006458560819737613 
+epoch [58/100], vae_loss: 4.6853, rnn_loss: 0.0198 reward_loss: 0.000699666328728199 
+epoch [59/100], vae_loss: 4.6465, rnn_loss: 0.0216 reward_loss: 0.0004635800141841173 
+epoch [60/100], vae_loss: 4.6894, rnn_loss: 0.0214 reward_loss: 0.0005965030868537724 
+epoch [61/100], vae_loss: 4.6326, rnn_loss: 0.0206 reward_loss: 0.0008491012267768383 
+epoch [62/100], vae_loss: 4.6203, rnn_loss: 0.0216 reward_loss: 0.0004931213916279376 
+epoch [63/100], vae_loss: 4.6668, rnn_loss: 0.0197 reward_loss: 0.0003805908199865371 
+epoch [64/100], vae_loss: 4.6580, rnn_loss: 0.0203 reward_loss: 0.000645440595690161 
+epoch [65/100], vae_loss: 4.6450, rnn_loss: 0.0203 reward_loss: 0.0007054408779367805 
+epoch [66/100], vae_loss: 4.6352, rnn_loss: 0.0205 reward_loss: 0.0008576578693464398 
+epoch [67/100], vae_loss: 4.6723, rnn_loss: 0.0189 reward_loss: 0.0007563348626717925 
+epoch [68/100], vae_loss: 4.6284, rnn_loss: 0.0190 reward_loss: 0.0006702512037009001 
+epoch [69/100], vae_loss: 4.6229, rnn_loss: 0.0191 reward_loss: 0.0006114643765613437 
+epoch [70/100], vae_loss: 4.6438, rnn_loss: 0.0193 reward_loss: 0.000482746196212247 
+epoch [71/100], vae_loss: 4.6601, rnn_loss: 0.0164 reward_loss: 0.0005698894965462387 
+epoch [72/100], vae_loss: 4.6711, rnn_loss: 0.0174 reward_loss: 0.00035571979242376983 
+epoch [73/100], vae_loss: 4.6744, rnn_loss: 0.0181 reward_loss: 0.0005608819192275405 
+epoch [74/100], vae_loss: 4.6597, rnn_loss: 0.0201 reward_loss: 0.0003896293928846717 
+epoch [75/100], vae_loss: 4.6303, rnn_loss: 0.0172 reward_loss: 0.0007222928106784821 
+epoch [76/100], vae_loss: 4.6643, rnn_loss: 0.0183 reward_loss: 0.00034448469523340464 
+epoch [77/100], vae_loss: 4.6594, rnn_loss: 0.0168 reward_loss: 0.000677273259498179 
+epoch [78/100], vae_loss: 4.6112, rnn_loss: 0.0178 reward_loss: 0.0005836315685883164 
+epoch [79/100], vae_loss: 4.6342, rnn_loss: 0.0198 reward_loss: 0.0006499215378426015 
+epoch [80/100], vae_loss: 4.5902, rnn_loss: 0.0205 reward_loss: 0.00051632069516927 
+epoch [81/100], vae_loss: 4.6106, rnn_loss: 0.0186 reward_loss: 0.0006477396818809211 
+epoch [82/100], vae_loss: 4.5861, rnn_loss: 0.0197 reward_loss: 0.0004862259665969759 
+epoch [83/100], vae_loss: 4.6328, rnn_loss: 0.0186 reward_loss: 0.0005588852218352258 
+epoch [84/100], vae_loss: 4.6194, rnn_loss: 0.0176 reward_loss: 0.0006066350033506751 
+epoch [85/100], vae_loss: 4.6312, rnn_loss: 0.0155 reward_loss: 0.0006905293557792902 
+epoch [86/100], vae_loss: 4.6260, rnn_loss: 0.0163 reward_loss: 0.0006808997131884098 
+epoch [87/100], vae_loss: 4.5662, rnn_loss: 0.0175 reward_loss: 0.0004804404452443123 
+epoch [88/100], vae_loss: 4.6151, rnn_loss: 0.0168 reward_loss: 0.00037704536225646734 
+epoch [89/100], vae_loss: 4.6237, rnn_loss: 0.0180 reward_loss: 0.00039292560541071 
+epoch [90/100], vae_loss: 4.6234, rnn_loss: 0.0173 reward_loss: 0.0005901072872802615 
+epoch [91/100], vae_loss: 4.6077, rnn_loss: 0.0173 reward_loss: 0.0005433016340248287 
+epoch [92/100], vae_loss: 4.5957, rnn_loss: 0.0172 reward_loss: 0.0006868234486319125 
+epoch [93/100], vae_loss: 4.6200, rnn_loss: 0.0175 reward_loss: 0.0005319382762536407 
+epoch [94/100], vae_loss: 4.5931, rnn_loss: 0.0185 reward_loss: 0.0004861071065533906 
+epoch [95/100], vae_loss: 4.5816, rnn_loss: 0.0182 reward_loss: 0.0006044525653123856 
+epoch [96/100], vae_loss: 4.5748, rnn_loss: 0.0172 reward_loss: 0.0005062847631052136 
+epoch [97/100], vae_loss: 4.6054, rnn_loss: 0.0177 reward_loss: 0.0005536518874578178 
+epoch [98/100], vae_loss: 4.6057, rnn_loss: 0.0187 reward_loss: 0.00045117619447410107 
+epoch [99/100], vae_loss: 4.5950, rnn_loss: 0.0199 reward_loss: 0.0005322963697835803 
+epoch [100/100], vae_loss: 4.6159, rnn_loss: 0.0154 reward_loss: 0.0005021893884986639 
+save:epoch 100
+2021-01-20 17:10:56.787782
+pybullet build time: Jul  8 2020 18:24:12
+start: 2021-01-20 17:11:38.601302
+Initialize EpisodeMemory
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+Start Training
+epoch [1/100], vae_loss: 1402.4964, rnn_loss: 0.1332 reward_loss: 0.0006393117946572602 
+epoch [2/100], vae_loss: 5.2155, rnn_loss: 0.1037 reward_loss: 0.006586366333067417 
+epoch [3/100], vae_loss: 4.9524, rnn_loss: 0.1154 reward_loss: 0.000756838358938694 
+epoch [4/100], vae_loss: 4.8285, rnn_loss: 0.0932 reward_loss: 0.0006691538728773594 
+epoch [5/100], vae_loss: 4.8009, rnn_loss: 0.0808 reward_loss: 0.0066541521809995174 
+epoch [6/100], vae_loss: 4.8677, rnn_loss: 0.0684 reward_loss: 0.007853797636926174 
+epoch [7/100], vae_loss: 4.7836, rnn_loss: 0.0612 reward_loss: 0.0006248459685593843 
+epoch [8/100], vae_loss: 4.7387, rnn_loss: 0.0508 reward_loss: 0.0007496600737795234 
+epoch [9/100], vae_loss: 4.7146, rnn_loss: 0.0480 reward_loss: 0.0005896150832995772 
+epoch [10/100], vae_loss: 4.7394, rnn_loss: 0.0418 reward_loss: 0.0007269153138622642 
+epoch [11/100], vae_loss: 4.7262, rnn_loss: 0.0414 reward_loss: 0.0005528379115276039 
+epoch [12/100], vae_loss: 4.6957, rnn_loss: 0.0415 reward_loss: 0.0005373774911276996 
+epoch [13/100], vae_loss: 4.7157, rnn_loss: 0.0358 reward_loss: 0.006798477377742529 
+epoch [14/100], vae_loss: 4.7086, rnn_loss: 0.0357 reward_loss: 0.0006070256931707263 
+epoch [15/100], vae_loss: 4.6730, rnn_loss: 0.0390 reward_loss: 0.0006880626315250993 
+epoch [16/100], vae_loss: 4.7066, rnn_loss: 0.0337 reward_loss: 0.0006479734438471496 
+epoch [17/100], vae_loss: 4.7098, rnn_loss: 0.0320 reward_loss: 0.0005223853513598442 
+epoch [18/100], vae_loss: 4.6650, rnn_loss: 0.0300 reward_loss: 0.006808565463870764 
+epoch [19/100], vae_loss: 4.6958, rnn_loss: 0.0289 reward_loss: 0.00048282858915627003 
+epoch [20/100], vae_loss: 4.6926, rnn_loss: 0.0301 reward_loss: 0.00067564204800874 
+epoch [21/100], vae_loss: 4.7021, rnn_loss: 0.0288 reward_loss: 0.00739000691100955 
+epoch [22/100], vae_loss: 4.6600, rnn_loss: 0.0311 reward_loss: 0.0004429261898621917 
+epoch [23/100], vae_loss: 4.6374, rnn_loss: 0.0333 reward_loss: 0.00784670002758503 
+epoch [24/100], vae_loss: 4.6353, rnn_loss: 0.0294 reward_loss: 0.0005523440195247531 
+epoch [25/100], vae_loss: 4.6723, rnn_loss: 0.0267 reward_loss: 0.00807795487344265 
+epoch [26/100], vae_loss: 4.6694, rnn_loss: 0.0274 reward_loss: 0.0005456020007841289 
+epoch [27/100], vae_loss: 4.6801, rnn_loss: 0.0266 reward_loss: 0.0005844925763085485 
+epoch [28/100], vae_loss: 4.6876, rnn_loss: 0.0248 reward_loss: 0.0005708815879188478 
+epoch [29/100], vae_loss: 4.6289, rnn_loss: 0.0277 reward_loss: 0.000514141283929348 
+epoch [30/100], vae_loss: 4.6614, rnn_loss: 0.0249 reward_loss: 0.012516026385128498 
+epoch [31/100], vae_loss: 4.6374, rnn_loss: 0.0300 reward_loss: 0.006709482055157423 
+epoch [32/100], vae_loss: 4.6629, rnn_loss: 0.0273 reward_loss: 0.006682264152914286 
+epoch [33/100], vae_loss: 4.6463, rnn_loss: 0.0301 reward_loss: 0.013461263850331306 
+epoch [34/100], vae_loss: 4.6494, rnn_loss: 0.0254 reward_loss: 0.012690884992480278 
+epoch [35/100], vae_loss: 4.6660, rnn_loss: 0.0273 reward_loss: 0.012802676297724247 
+epoch [36/100], vae_loss: 4.6265, rnn_loss: 0.0298 reward_loss: 0.024890519678592682 
+epoch [37/100], vae_loss: 4.6372, rnn_loss: 0.0268 reward_loss: 0.0005946733872406185 
+epoch [38/100], vae_loss: 4.6667, rnn_loss: 0.0270 reward_loss: 0.0006790448096580803 
+epoch [39/100], vae_loss: 4.6541, rnn_loss: 0.0277 reward_loss: 0.007124343886971474 
+epoch [40/100], vae_loss: 4.6615, rnn_loss: 0.0262 reward_loss: 0.007299104705452919 
+epoch [41/100], vae_loss: 4.6455, rnn_loss: 0.0275 reward_loss: 0.01323480624705553 
+epoch [42/100], vae_loss: 4.6416, rnn_loss: 0.0284 reward_loss: 0.0006306946743279696 
+epoch [43/100], vae_loss: 4.6111, rnn_loss: 0.0269 reward_loss: 0.006613944191485643 
+epoch [44/100], vae_loss: 4.6361, rnn_loss: 0.0280 reward_loss: 0.006647210102528334 
+epoch [45/100], vae_loss: 4.6383, rnn_loss: 0.0271 reward_loss: 0.014615255407989025 
+epoch [46/100], vae_loss: 4.6610, rnn_loss: 0.0273 reward_loss: 0.018422560766339302 
+epoch [47/100], vae_loss: 4.6139, rnn_loss: 0.0278 reward_loss: 0.012248082086443901 
+epoch [48/100], vae_loss: 4.6434, rnn_loss: 0.0291 reward_loss: 0.0007890881970524788 
+epoch [49/100], vae_loss: 4.6222, rnn_loss: 0.0274 reward_loss: 0.024763306602835655 
+epoch [50/100], vae_loss: 4.6508, rnn_loss: 0.0238 reward_loss: 0.012253116816282272 
+epoch [51/100], vae_loss: 4.6505, rnn_loss: 0.0246 reward_loss: 0.006651194766163826 
+epoch [52/100], vae_loss: 4.6497, rnn_loss: 0.0260 reward_loss: 0.0007314407848753035 
+epoch [53/100], vae_loss: 4.6425, rnn_loss: 0.0284 reward_loss: 0.006078988313674927 
+epoch [54/100], vae_loss: 4.6184, rnn_loss: 0.0262 reward_loss: 0.01256722491234541 
+epoch [55/100], vae_loss: 4.6521, rnn_loss: 0.0248 reward_loss: 0.006629678420722485 
+epoch [56/100], vae_loss: 4.6865, rnn_loss: 0.0232 reward_loss: 0.025612350553274155 
+epoch [57/100], vae_loss: 4.6373, rnn_loss: 0.0247 reward_loss: 0.01218053326010704 
+epoch [58/100], vae_loss: 4.6805, rnn_loss: 0.0246 reward_loss: 0.018729718402028084 
+epoch [59/100], vae_loss: 4.6395, rnn_loss: 0.0250 reward_loss: 0.013457782566547394 
+epoch [60/100], vae_loss: 4.6310, rnn_loss: 0.0242 reward_loss: 0.01348085980862379 
+epoch [61/100], vae_loss: 4.6473, rnn_loss: 0.0238 reward_loss: 0.006587127689272165 
+epoch [62/100], vae_loss: 4.6525, rnn_loss: 0.0231 reward_loss: 0.019616100937128067 
+epoch [63/100], vae_loss: 4.6241, rnn_loss: 0.0226 reward_loss: 0.0194498673081398 
+epoch [64/100], vae_loss: 4.6207, rnn_loss: 0.0223 reward_loss: 0.006379436235874891 
+epoch [65/100], vae_loss: 4.6465, rnn_loss: 0.0222 reward_loss: 0.012957953847944736 
+epoch [66/100], vae_loss: 4.6068, rnn_loss: 0.0252 reward_loss: 0.013298808597028255 
+epoch [67/100], vae_loss: 4.6247, rnn_loss: 0.0235 reward_loss: 0.01208531204611063 
+epoch [68/100], vae_loss: 4.6213, rnn_loss: 0.0237 reward_loss: 0.012280871160328388 
+epoch [69/100], vae_loss: 4.6494, rnn_loss: 0.0222 reward_loss: 0.012244602665305138 
+epoch [70/100], vae_loss: 4.5973, rnn_loss: 0.0213 reward_loss: 0.018361642956733704 
+epoch [71/100], vae_loss: 4.6296, rnn_loss: 0.0220 reward_loss: 0.02415846660733223 
+epoch [72/100], vae_loss: 4.6042, rnn_loss: 0.0228 reward_loss: 0.0013969484716653824 
+epoch [73/100], vae_loss: 4.6023, rnn_loss: 0.0217 reward_loss: 0.006832543294876814 
+epoch [74/100], vae_loss: 4.6389, rnn_loss: 0.0234 reward_loss: 0.012536094523966312 
+epoch [75/100], vae_loss: 4.6005, rnn_loss: 0.0222 reward_loss: 0.02490619570016861 
+epoch [76/100], vae_loss: 4.6126, rnn_loss: 0.0221 reward_loss: 0.018109392374753952 
+epoch [77/100], vae_loss: 4.6420, rnn_loss: 0.0201 reward_loss: 0.012005721218883991 
+epoch [78/100], vae_loss: 4.6053, rnn_loss: 0.0235 reward_loss: 0.01833430677652359 
+epoch [79/100], vae_loss: 4.6263, rnn_loss: 0.0218 reward_loss: 0.012543421238660812 
+epoch [80/100], vae_loss: 4.6261, rnn_loss: 0.0205 reward_loss: 0.012688850983977318 
+epoch [81/100], vae_loss: 4.6340, rnn_loss: 0.0210 reward_loss: 0.006139697507023811 
+epoch [82/100], vae_loss: 4.6484, rnn_loss: 0.0209 reward_loss: 0.02391391433775425 
+epoch [83/100], vae_loss: 4.6234, rnn_loss: 0.0179 reward_loss: 0.019181547686457634 
+epoch [84/100], vae_loss: 4.6348, rnn_loss: 0.0197 reward_loss: 0.011668411083519459 
+epoch [85/100], vae_loss: 4.6477, rnn_loss: 0.0202 reward_loss: 0.023577794432640076 
+epoch [86/100], vae_loss: 4.6248, rnn_loss: 0.0203 reward_loss: 0.01230473443865776 
+epoch [87/100], vae_loss: 4.6253, rnn_loss: 0.0199 reward_loss: 0.024137621745467186 
+epoch [88/100], vae_loss: 4.6454, rnn_loss: 0.0196 reward_loss: 0.0009677468333393335 
+epoch [89/100], vae_loss: 4.6449, rnn_loss: 0.0194 reward_loss: 0.012807624414563179 
+epoch [90/100], vae_loss: 4.5877, rnn_loss: 0.0202 reward_loss: 0.017597192898392677 
+epoch [91/100], vae_loss: 4.6321, rnn_loss: 0.0181 reward_loss: 0.0067194071598351 
+epoch [92/100], vae_loss: 4.6404, rnn_loss: 0.0182 reward_loss: 0.007146146148443222 
+epoch [93/100], vae_loss: 4.6261, rnn_loss: 0.0199 reward_loss: 0.006624056492000818 
+epoch [94/100], vae_loss: 4.5860, rnn_loss: 0.0203 reward_loss: 0.01803699880838394 
+epoch [95/100], vae_loss: 4.6070, rnn_loss: 0.0194 reward_loss: 0.012959975749254227 
+epoch [96/100], vae_loss: 4.6334, rnn_loss: 0.0180 reward_loss: 0.012182103469967842 
+epoch [97/100], vae_loss: 4.6266, rnn_loss: 0.0197 reward_loss: 0.0009229329880326986 
+epoch [98/100], vae_loss: 4.5846, rnn_loss: 0.0183 reward_loss: 0.0175824835896492 
+epoch [99/100], vae_loss: 4.6209, rnn_loss: 0.0195 reward_loss: 0.0014571599895134568 
+epoch [100/100], vae_loss: 4.6434, rnn_loss: 0.0169 reward_loss: 0.017840255051851273 
+save:epoch 100
+2021-01-20 17:50:21.963106
+pybullet build time: Jul  8 2020 18:24:12

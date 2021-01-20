@@ -19,6 +19,36 @@ python train.py --rnn-hidden 21 --sec 0.1 --id "run9/more100" --init-episode 100
 // add rewardDirection
 python train.py --rnn-hidden 21 --sec 0.1 --id "run10" --init-episode 100 --batch-size 128 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 100
 
-// dynamic reset
+// dynamic reset <- miss!!
 python train.py --rnn-hidden 21 --sec 0.1 --id "run11" --init-episode 100 --batch-size 128 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 100
 python train.py --rnn-hidden 21 --sec 0.1 --id "run11/more100" --init-episode 100 --batch-size 128 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 100 --models-vae "./result/run11/vae.pth" --models-rnn "./result/run11/rnn.pth" --models-reward "./result/run11/reward.pth"
+
+// dynamic reset fixed
+// (add observe noise) <- no
+// change interval = 4.0
+python train.py --rnn-hidden 21 --sec 0.1 --id "run12" --init-episode 100 --batch-size 128 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 100
+
+// change interval = 6.0
+python train.py --rnn-hidden 21 --sec 0.1 --id "run13" --init-episode 100 --batch-size 128 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 100
+
+// change init train
+python train.py --rnn-hidden 21 --sec 0.1 --id "run14" --init-episode 100 --batch-size 512 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 100
+
+
+// ----------------- train2 -----------------
+
+python train2.py --rnn-hidden 21 --sec 0.1 --id "run0" --init-episode 100 --batch-size 128 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 100
+// change rewardContact = -1.0
+python train2.py --rnn-hidden 21 --sec 0.1 --id "run1" --init-episode 100 --batch-size 128 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 100
+
+// fix robot_sim -> robot_sim2
+
+// change rewardContact = -10.0
+python train2.py --rnn-hidden 21 --sec 0.1 --id "run2" --init-episode 100 --batch-size 128 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 100
+
+
+// change init train
+python train2.py --rnn-hidden 21 --sec 0.1 --id "run3" --init-episode 100 --batch-size 512 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 100
+
+nohup python train2.py --rnn-hidden 21 --sec 0.1 --id "run3" --init-episode 100 --batch-size 512 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 100 > v2run3.log &
+nohup python train.py --rnn-hidden 21 --sec 0.1 --id "run14" --init-episode 100 --batch-size 512 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 100 > v1run14.log &

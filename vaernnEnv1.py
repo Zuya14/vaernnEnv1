@@ -32,7 +32,7 @@ class vaernnEnv1(gym.Env):
             self.sim = robot_sim.robot_sim(_id, mode, sec)
 
         # self.action_space = gym.spaces.Box(low=0.0, high=1.0, shape=(3,))
-        self.action_space = gym.spaces.Box(low=-1.0, high=1.0, shape=(3,))
+        self.action_space = gym.spaces.Box(low=-1.0, high=1.0, shape=(3,), dtype=np.float32)
 
         self.lidar = self.createLidar()
 
@@ -48,7 +48,7 @@ class vaernnEnv1(gym.Env):
         else:
             new_env.sim = self.sim.copy(_id)
 
-        new_env.action_space = gym.spaces.Box(low=0.0, high=1.0, shape=(3,))
+        new_env.action_space = gym.spaces.Box(low=0.0, high=1.0, shape=(3,), dtype=np.float32)
         new_env.lidar = new_env.createLidar()
         new_env.sec = self.sec
 
