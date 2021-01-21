@@ -45,7 +45,7 @@ def collect_init_episode(memory_size, collect_num, min_step, clientReset=False, 
     collect_count = 0
 
     done_step = 0
-
+    
     while collect_count < collect_num:
         episode = Episode()
 
@@ -312,7 +312,12 @@ if __name__ == '__main__':
 
     parser.add_argument("--sec", type=float, default=0.01)
 
+    parser.add_argument("--interval", type=float, default=3.0)
+    parser.add_argument('--no-init-train', action='store_true')
+
     args = parser.parse_args()
+
+    interval = args.interval
 
     out_dir = './result' 
 
@@ -395,17 +400,18 @@ if __name__ == '__main__':
 
     f = open(out_dir + '/done_position.txt', 'w')
 
-    for _ in range(args.threads):
-        datas_observations, datas_actions, datas_rewards, datas_dones, next_observations = memory.sample(n=args.batch_size, L=args.chunk_size)
-        mse_loss, KLD_loss, z  = vae_train.train2(datas_observations.view(-1, args.batch_size, 1080))
-        _, _, z2 = vae_train.train2(next_observations)
-        vae_loss = mse_loss+KLD_loss
+    if not args.no_init_train:
+        for _ in range(args.threads):
+            datas_observations, datas_actions, datas_rewards, datas_dones, next_observations = memory.sample(n=args.batch_size, L=args.chunk_size)
+            mse_loss, KLD_loss, z  = vae_train.train2(datas_observations.view(-1, args.batch_size, 1080))
+            _, _, z2 = vae_train.train2(next_observations)
+            vae_loss = mse_loss+KLD_loss
 
-        z  = z.detach()
-        z2 = z2.detach()
+            z  = z.detach()
+            z2 = z2.detach()
 
-        rnn_loss, predicts, hiddens = rnn_train.train(z.view(args.batch_size, args.chunk_size, latent_size), datas_actions, z2.view(args.batch_size, 1, latent_size))
-        reward_loss = reward_train.train(predicts.view(args.batch_size, -1).detach(), hiddens.view(args.batch_size, -1).detach(), datas_rewards[:, -1].view(args.batch_size, 1)) 
+            rnn_loss, predicts, hiddens = rnn_train.train(z.view(args.batch_size, args.chunk_size, latent_size), datas_actions, z2.view(args.batch_size, 1, latent_size))
+            reward_loss = reward_train.train(predicts.view(args.batch_size, -1).detach(), hiddens.view(args.batch_size, -1).detach(), datas_rewards[:, -1].view(args.batch_size, 1)) 
 
     for epoch in range(1, args.epochs+1):
 

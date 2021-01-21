@@ -36,6 +36,8 @@ class vaernnEnv1(gym.Env):
 
         self.lidar = self.createLidar()
 
+        self.observation_space = gym.spaces.Box(low=0.0, high=1.0, shape=(1081,))
+
         self.sec = sec
         self.reset()
 
@@ -50,6 +52,8 @@ class vaernnEnv1(gym.Env):
 
         new_env.action_space = gym.spaces.Box(low=0.0, high=1.0, shape=(3,), dtype=np.float32)
         new_env.lidar = new_env.createLidar()
+        new_env.observation_space = gym.spaces.Box(low=0.0, high=1.0, shape=(1081,))
+
         new_env.sec = self.sec
 
         return new_env
