@@ -3,6 +3,7 @@ python train2.py --rnn-hidden 21 --sec 0.1 --id "re-00" --init-episode 100 --bat
 
 
 python train.py --rnn-hidden 21 --sec 0.1 --id "re-00/more100" --init-episode 1 --batch-size 128 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 100 --interval 6.0 --models-vae "./result/re-00/vae.pth" --models-rnn "./result/re-00/rnn.pth" --models-reward "./result/re-00/reward.pth"
+
 python train2.py --rnn-hidden 21 --sec 0.1 --id "re-00/more100" --init-episode 1 --batch-size 128 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 100 --interval 6.0 --models-vae "./result2/re-00/vae.pth" --models-rnn "./result2/re-00/rnn.pth" --models-reward "./result2/re-00/reward.pth"
 
 python train.py --rnn-hidden 21 --sec 0.1 --id "re-00/more100v2" --init-episode 100 --batch-size 128 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 100 --interval 6.0 --models-vae "./result/re-00/vae.pth" --models-rnn "./result/re-00/rnn.pth" --models-reward "./result/re-00/reward.pth" --no-init-train
@@ -10,9 +11,6 @@ python train2.py --rnn-hidden 21 --sec 0.1 --id "re-00/more100v2" --init-episode
 
 python train.py --rnn-hidden 21 --sec 0.1 --id "re-00/more100v2" --init-episode 10 --batch-size 128 --action-noise 0.5 --memory-size 20000 --threads 10 --epochs 100 --interval 6.0 --models-vae "./result/re-00/vae.pth" --models-rnn "./result/re-00/rnn.pth" --models-reward "./result/re-00/reward.pth" --no-init-train
 python train2.py --rnn-hidden 21 --sec 0.1 --id "re-00/more100v2" --init-episode 10 --batch-size 128 --action-noise 0.5 --memory-size 20000 --threads 10 --epochs 100 --interval 6.0 --models-vae "./result2/re-00/vae.pth" --models-rnn "./result2/re-00/rnn.pth" --models-reward "./result2/re-00/reward.pth" --no-init-train
-
-nohup python -u train.py --rnn-hidden 21 --sec 0.1 --id "re-00/more100v2" --init-episode 10 --batch-size 128 --action-noise 0.5 --memory-size 20000 --threads 10 --epochs 100 --interval 6.0 --models-vae "./result/re-00/vae.pth" --models-rnn "./result/re-00/rnn.pth" --models-reward "./result/re-00/reward.pth" --no-init-train > v1re00v2.log &
-nohup python -u train2.py --rnn-hidden 21 --sec 0.1 --id "re-00/more100v2" --init-episode 10 --batch-size 128 --action-noise 0.5 --memory-size 20000 --threads 10 --epochs 100 --interval 6.0 --models-vae "./result2/re-00/vae.pth" --models-rnn "./result2/re-00/rnn.pth" --models-reward "./result2/re-00/reward.pth" --no-init-train > v2re00v2.log &
 
 // rewardContact = -1.0
 python train.py --rnn-hidden 21 --sec 0.1 --id "re-01" --init-episode 100 --batch-size 512 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 100 --interval 6.0
@@ -32,3 +30,4 @@ python train2.py --rnn-hidden 36 --sec 0.1 --id "re-03" --init-episode 100 --bat
 
 nohup python -u train.py --rnn-hidden 36 --sec 0.1 --id "re-03" --init-episode 100 --batch-size 512 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 500 --interval 6.0  > v1re03.log &
 nohup python -u train2.py --rnn-hidden 36 --sec 0.1 --id "re-03" --init-episode 100 --batch-size 512 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 500 --interval 6.0 > v2re03.log &
+python train2.py --rnn-hidden 21 --sec 0.1 --id "re-00/more100" --init-episode 1 --batch-size 128 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 100 --interval 6.0 --models-vae "./result2/re-00/vae.pth" --models-rnn "./result2/re-00/rnn.pth" --models-reward "./result2/re-00/reward.pth"
