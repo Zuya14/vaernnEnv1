@@ -597,3 +597,4 @@ if __name__ == '__main__':
 
     print("save:epoch", epoch)
     print(datetime.datetime.now())
+    print(datetime.datetime.now() - s_time)
