@@ -54,3 +54,6 @@ nohup python -u train2-1.py --rnn-hidden 36 --sec 0.1 --id "03" --init-episode 1
 
 nohup python -u train.py --rnn-hidden 36 --sec 0.1 --id "re-07" --init-episode 100 --batch-size 256 --action-noise 0.5 --memory-size 100000 --threads 10 --epochs 100 --interval 6.0 > v1re07.log &
 nohup python -u train2.py --rnn-hidden 36 --sec 0.1 --id "re-07" --init-episode 100 --batch-size 256 --action-noise 0.5 --memory-size 100000 --threads 10 --epochs 100 --interval 6.0 > v2re07.log &
+
+nohup python -u train-2.py --rnn-hidden 36 --sec 0.1 --id "01" --init-episode 100 --batch-size 256 --action-noise 0.5 --memory-size 100000 --threads 10 --epochs 100 --interval 6.0 > v1-2-01.log &
+nohup python -u train2-2.py --rnn-hidden 36 --sec 0.1 --id "01" --init-episode 100 --batch-size 256 --action-noise 0.5 --memory-size 100000 --threads 10 --epochs 100 --interval 6.0 > v2-2-01.log &
