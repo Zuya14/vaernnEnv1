@@ -298,7 +298,7 @@ if __name__ == '__main__':
     parser.add_argument('--planning-horizon', type=int, default=10)
     parser.add_argument('--max-iters', type=int, default=10)
     parser.add_argument('--candidates', type=int, default=100)
-    parser.add_argument('--top_candidates', type=int, default=10)
+    parser.add_argument('--top-candidates', type=int, default=10)
 
     parser.add_argument('--action-noise', type=float, default=0.3)
 

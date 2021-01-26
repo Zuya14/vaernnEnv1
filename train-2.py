@@ -49,7 +49,7 @@ def collect_init_episode(memory_size, collect_num, min_step, clientReset=False, 
     while collect_count < collect_num:
         episode = Episode()
 
-        env.reset(clientReset=clientReset, dynamic_counter=dynamic_counter, interval=interval)
+        env.reset(clientReset=clientReset, dynamic_counter=dynamic_counter, interval=interval, x=-0.75)
         observation = env.observe()
 
         step = 0
@@ -440,7 +440,7 @@ if __name__ == '__main__':
 
             episode = Episode()
 
-            env.reset(clientReset=False, dynamic_counter=dynamic_counter, interval=interval)
+            env.reset(clientReset=False, dynamic_counter=dynamic_counter, interval=interval, x=-0.75)
             observation = env.observe()[:1080]
 
             old_actions = torch.tensor([env.sim.action], device=device).view(1, 1, -1)
@@ -514,7 +514,7 @@ if __name__ == '__main__':
             with torch.no_grad():
                 reward_sum = 0.0
 
-                env.reset(clientReset=False, dynamic_counter=dynamic_counter, interval=interval)
+                env.reset(clientReset=False, dynamic_counter=dynamic_counter, interval=interval, x=-0.75)
                 observation = env.observe()[:1080]
 
                 old_actions = torch.tensor([env.sim.action], device=device).view(1, 1, -1)

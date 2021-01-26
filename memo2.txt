@@ -31,3 +31,15 @@ python train2.py --rnn-hidden 42 --sec 0.1 --id "re-04" --init-episode 100 --bat
 // rewardContact = -5.0 rnn-hidden 42
 python train.py --rnn-hidden 42 --sec 0.1 --id "re-05" --init-episode 100 --batch-size 512 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 300 --interval 6.0
 python train2.py --rnn-hidden 42 --sec 0.1 --id "re-05" --init-episode 100 --batch-size 512 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 300 --interval 6.0
+
+// rewardContact = -10.0 rnn-hidden 36 --top-candidates 1000 --candidates 100
+python train.py --rnn-hidden 36 --sec 0.1 --id "re-06" --init-episode 100 --batch-size 512 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 300 --interval 6.0 --top-candidates 1000 --candidates 100
+python train2.py --rnn-hidden 36 --sec 0.1 --id "re-06" --init-episode 100 --batch-size 512 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 300 --interval 6.0 --top-candidates 1000 --candidates 100
+
+
+nohup python -u train.py --rnn-hidden 36 --sec 0.1 --id "re-06" --init-episode 100 --batch-size 512 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 300 --interval 6.0 --top-candidates 1000 --candidates 100 > v1re06.log &
+nohup python -u train2.py --rnn-hidden 36 --sec 0.1 --id "re-06" --init-episode 100 --batch-size 512 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 300 --interval 6.0 --top-candidates 1000 --candidates 100 > v2re06.log &
+
+// rewardContact = -10.0 rnn-hidden 36
+nohup python -u train-1.py --rnn-hidden 36 --sec 0.1 --id "01" --init-episode 100 --batch-size 512 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 300 --interval 6.0 > v1-1-01.log &
+nohup python -u train2-1.py --rnn-hidden 36 --sec 0.1 --id "01" --init-episode 100 --batch-size 512 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 300 --interval 6.0 > v2-1-01.log &

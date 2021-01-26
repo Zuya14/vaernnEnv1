@@ -26,30 +26,29 @@ import plot_graph
 from gym.envs.registration import register
 
 register(
-    id='vaernn-v1',
-    entry_point='vaernnEnv1:vaernnEnv1'
+    id='vaernn-v2',
+    entry_point='vaernnEnv2:vaernnEnv2'
 )
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 max_step = 200
 dynamic_counter = -1.0
-# interval = 4.0
-interval = 6.0
+interval = 4.0
 
 def collect_init_episode(memory_size, collect_num, min_step, clientReset=False, sample_rate=0.001, sec=0.01):
-    env = gym.make('vaernn-v1')
+    env = gym.make('vaernn-v2')
     env.setting(sec=sec)
     memory = EpisodeMemory(mem_size=memory_size)
 
     collect_count = 0
 
     done_step = 0
-    
+
     while collect_count < collect_num:
         episode = Episode()
 
-        env.reset(clientReset=clientReset, dynamic_counter=dynamic_counter, interval=interval)
+        env.reset(clientReset=clientReset, dynamic_counter=dynamic_counter, interval=interval, x=-0.75)
         observation = env.observe()
 
         step = 0
@@ -319,7 +318,7 @@ if __name__ == '__main__':
 
     interval = args.interval
 
-    out_dir = './result' 
+    out_dir = './result2-1' 
 
     if args.id != '':
         out_dir += '/' + args.id
@@ -381,7 +380,7 @@ if __name__ == '__main__':
 
     print("Initialize EpisodeMemory")
 
-    memory = EpisodeMemory(mem_size=args.memory_size)
+    memory = EpisodeMemory(mem_size=args.memory_size*args.threads)
 
     with futures.ProcessPoolExecutor(max_workers=os.cpu_count()) as executor:
         future_list = [executor.submit(collect_init_episode, memory_size=args.memory_size, collect_num=args.init_episode, min_step=args.chunk_size+1, clientReset=True, sec=args.sec) for i in range(args.threads)]
@@ -395,7 +394,7 @@ if __name__ == '__main__':
 
     print("Start Training")
 
-    env = gym.make('vaernn-v1')
+    env = gym.make('vaernn-v2')
     env.setting(sec=args.sec)
 
     f = open(out_dir + '/done_position.txt', 'w')
@@ -440,7 +439,7 @@ if __name__ == '__main__':
 
             episode = Episode()
 
-            env.reset(clientReset=False, dynamic_counter=dynamic_counter, interval=interval)
+            env.reset(clientReset=False, dynamic_counter=dynamic_counter, interval=interval, x=-0.75)
             observation = env.observe()[:1080]
 
             old_actions = torch.tensor([env.sim.action], device=device).view(1, 1, -1)
@@ -514,7 +513,7 @@ if __name__ == '__main__':
             with torch.no_grad():
                 reward_sum = 0.0
 
-                env.reset(clientReset=False, dynamic_counter=dynamic_counter, interval=interval)
+                env.reset(clientReset=False, dynamic_counter=dynamic_counter, interval=interval, x=-0.75)
                 observation = env.observe()[:1080]
 
                 old_actions = torch.tensor([env.sim.action], device=device).view(1, 1, -1)
