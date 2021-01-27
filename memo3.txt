@@ -1,3 +1,8 @@
 
 
 nohup python -u train3.py --rnn-hidden 36 --sec 0.1 --id "01" --init-episode 100 --batch-size 256 --action-noise 0.5 --memory-size 100000 --threads 10 --epochs 300 --interval 6.0 --no-cuda > v3-01.log &
+
+
+nohup python -u train_ex.py  --env-version 0 --rnn-hidden 36 --sec 0.1 --id "01" --init-episode 100 --batch-size 256 --action-noise 0.5 --memory-size 100000 --threads 10 --epochs 300 --interval 6.0 -> ex-01.log &
+nohup python -u train_ex.py  --env-version 1 --rnn-hidden 36 --sec 0.1 --id "01" --init-episode 100 --batch-size 256 --action-noise 0.5 --memory-size 100000 --threads 10 --epochs 300 --interval 6.0 -> ex1-01.log &
+nohup python -u train_ex.py  --env-version 2 --rnn-hidden 36 --sec 0.1 --id "01" --init-episode 100 --batch-size 256 --action-noise 0.5 --memory-size 100000 --threads 10 --epochs 300 --interval 6.0 -> ex2-01.log &
