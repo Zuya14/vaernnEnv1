@@ -355,3 +355,39 @@ epoch [100/100], vae_loss: 4.6434, rnn_loss: 0.0169 reward_loss: 0.0178402550518
 save:epoch 100
 2021-01-20 17:50:21.963106
 pybullet build time: Jul  8 2020 18:24:12
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+/home/ishizuya/.pyenv/versions/anaconda3-2020.02/envs/pytorch/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
