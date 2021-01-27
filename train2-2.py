@@ -320,7 +320,7 @@ if __name__ == '__main__':
 
     interval = args.interval
 
-    out_dir = './result2-1' 
+    out_dir = './result2-2' 
 
     if args.id != '':
         out_dir += '/' + args.id
