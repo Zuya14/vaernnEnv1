@@ -175,10 +175,13 @@ class robot_sim:
 
     def updateDynamicBody(self):
 
-        if self.dynamic_counter < self.dynamic_interval/2.0:
-            x = -0.5 + 2.5 * (2.0 * self.dynamic_counter / self.dynamic_interval)
-        else:
-            x = -0.5 + 2.5 * (2.0 * (self.dynamic_interval-self.dynamic_counter) / self.dynamic_interval)
+        # if self.dynamic_counter < self.dynamic_interval/2.0:
+        #     x = -0.5 + 2.5 * (2.0 * self.dynamic_counter / self.dynamic_interval)
+        # else:
+        #     x = -0.5 + 2.5 * (2.0 * (self.dynamic_interval-self.dynamic_counter) / self.dynamic_interval)
+        p = 2.0 * math.pi * self.dynamic_counter / self.dynamic_interval
+        x = -0.5 + 1.25 + 1.25*(9.0*math.sin(p) + math.sin(3.0*p))/8.0
+
 
         _id = self.phisicsClient.loadURDF(
             dynamic_body0,
