@@ -15,3 +15,13 @@ nohup python -u train4.py --rnn-hidden 36 --sec 0.1 --id "01" --init-episode 100
 
 nohup python -u train_ex_limit.py  --env-version 0 --rnn-hidden 108 --sec 0.1 --id "no_t" --init-episode 100 --batch-size 256 --action-noise 0.5 --memory-size 100000 --threads 10 --epochs 100 --interval 6.0 > ex_limit_no_t.log &
 nohup python -u train_ex_limit.py  --env-version 0 --rnn-hidden 108 --sec 0.1 --id "no_w" --init-episode 100 --batch-size 256 --action-noise 0.5 --memory-size 100000 --threads 10 --epochs 100 --interval 6.0 > ex_limit_no_w.log &
+
+
+// rewardContact = -1.0 rnn-hidden 108  chunk-size 25 planning-horizon 10
+nohup python -u train4.py --rnn-hidden 108 --chunk-size 25 --planning-horizon 10 --sec 0.1 --id "02" --init-episode 100 --batch-size 256 --action-noise 0.5 --memory-size 100000 --threads 10 --epochs 300 --interval 6.0 --no-cuda > v4-02.log &
+
+// rewardContact = -1.0 rnn-hidden 108  chunk-size 25 planning-horizon 50
+nohup python -u train4.py --rnn-hidden 108 --chunk-size 25 --planning-horizon 50 --sec 0.1 --id "03" --init-episode 100 --batch-size 256 --action-noise 0.5 --memory-size 100000 --threads 10 --epochs 300 --interval 6.0 --no-cuda > v4-03.log &
+
+// rewardContact = -1.0 rnn-hidden 108  chunk-size 25 planning-horizon 5
+nohup python -u train4.py --rnn-hidden 108 --chunk-size 25 --planning-horizon 5 --sec 0.1 --id "04" --init-episode 100 --batch-size 256 --action-noise 0.5 --memory-size 100000 --threads 10 --epochs 300 --interval 6.0 --no-cuda > v4-04.log &

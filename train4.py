@@ -452,7 +452,8 @@ if __name__ == '__main__':
 
             episode = Episode()
 
-            env.reset(clientReset=False, dynamic_counter=dynamic_counter, interval=interval, x=random.randint(-1, 1)*0.75)
+            # env.reset(clientReset=False, dynamic_counter=dynamic_counter, interval=interval, x=random.randint(-1, 1)*0.75)
+            env.reset(clientReset=False, dynamic_counter=dynamic_counter, interval=interval, x=random.randint(-1, 1)*1.25)
             observation = env.observe()[:1080]
 
             old_actions = torch.tensor([env.sim.action], device=device).view(1, 1, -1)

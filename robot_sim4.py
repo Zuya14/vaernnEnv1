@@ -230,6 +230,8 @@ if __name__ == '__main__':
     sim = robot_sim(0, mode=p.GUI, sec=0.05)
     # sim = robot_sim(0, mode=p.DIRECT)
 
+    # sim.reset(x=1.25)
+
     from bullet_lidar import bullet_lidar
 
     deg_offset = 90.
