@@ -62,3 +62,9 @@ nohup python -u train-2.py --rnn-hidden 36 --sec 0.1 --id "02" --init-episode 10
 nohup python -u train2-2.py --rnn-hidden 36 --sec 0.1 --id "02" --init-episode 100 --batch-size 256 --action-noise 0.5 --memory-size 100000 --threads 10 --epochs 300 --interval 6.0 > v2-2-02.log &
 
 nohup python -u train2-3.py --rnn-hidden 36 --sec 0.1 --id "01" --init-episode 100 --batch-size 256 --action-noise 0.5 --memory-size 100000 --threads 10 --epochs 300 --interval 6.0 --no-cuda > v2-3-01.log &
+
+
+
+// rewardContact = -1.0 -abs(self.sim.action[0]) rnn-hidden 36  + rewardW
+nohup python -u train.py --rnn-hidden 36 --sec 0.1 --id "w01" --init-episode 100 --batch-size 512 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 100 --interval 6.0 > v1-w01.log &
+nohup python -u train2.py --rnn-hidden 36 --sec 0.1 --id "w01" --init-episode 100 --batch-size 512 --action-noise 0.5 --memory-size 200000 --threads 10 --epochs 100 --interval 6.0 > v2-w01.log &

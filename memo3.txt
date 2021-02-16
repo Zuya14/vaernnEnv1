@@ -2,3 +2,24 @@
 
 nohup python -u train3.py --rnn-hidden 36 --sec 0.1 --id "01" --init-episode 100 --batch-size 256 --action-noise 0.5 --memory-size 100000 --threads 10 --epochs 100 --interval 6.0 --no-cuda > v3-01.log &
 nohup python -u train4.py --rnn-hidden 36 --sec 0.1 --id "01" --init-episode 100 --batch-size 256 --action-noise 0.5 --memory-size 100000 --threads 10 --epochs 100 --interval 6.0 --no-cuda > v4-01.log &
+
+nohup python -u train_ex.py  --env-version 0 --rnn-hidden 36 --sec 0.1 --id "01" --init-episode 100 --batch-size 256 --action-noise 0.5 --memory-size 100000 --threads 10 --epochs 100 --interval 6.0 > ex-01.log &
+nohup python -u train_ex.py  --env-version 1 --rnn-hidden 36 --sec 0.1 --id "01" --init-episode 100 --batch-size 256 --action-noise 0.5 --memory-size 100000 --threads 10 --epochs 100 --interval 6.0 > ex1-01.log &
+nohup python -u train_ex.py  --env-version 2 --rnn-hidden 36 --sec 0.1 --id "01" --init-episode 100 --batch-size 256 --action-noise 0.5 --memory-size 100000 --threads 10 --epochs 100 --interval 6.0 > ex2-01.log &
+
+// rewardContact = -1.0
+nohup python -u train_ex.py  --env-version 0 --rnn-hidden 36 --sec 0.1 --id "02" --init-episode 100 --batch-size 256 --action-noise 0.5 --memory-size 100000 --threads 10 --epochs 100 --interval 6.0 --no-cuda > ex2-00.log &
+nohup python -u train_ex.py  --env-version 1 --rnn-hidden 36 --sec 0.1 --id "02" --init-episode 100 --batch-size 256 --action-noise 0.5 --memory-size 100000 --threads 10 --epochs 100 --interval 6.0 --no-cuda > ex2-01.log &
+nohup python -u train_ex.py  --env-version 2 --rnn-hidden 36 --sec 0.1 --id "02" --init-episode 100 --batch-size 256 --action-noise 0.5 --memory-size 100000 --threads 10 --epochs 100 --interval 6.0 --no-cuda > ex2-02.log &
+
+
+nohup python -u train_ex.py  --env-version 2 --rnn-hidden 36 --sec 0.1 --id "03" --init-episode 100 --batch-size 256 --action-noise 0.5 --memory-size 100000 --threads 10 --epochs 500 --interval 6.0 --no-cuda > ex2-03.log &
+
+
+// rewardContact = -1.0
+nohup python -u train_ex.py  --env-version 3 --rnn-hidden 36 --sec 0.1 --id "01" --init-episode 100 --batch-size 256 --action-noise 0.5 --memory-size 100000 --threads 10 --epochs 100 --interval 6.0 --no-cuda > ex3-01.log &
+// rewardContact = -10.0
+nohup python -u train_ex.py  --env-version 3 --rnn-hidden 36 --sec 0.1 --id "02" --init-episode 100 --batch-size 256 --action-noise 0.5 --memory-size 100000 --threads 10 --epochs 100 --interval 6.0 --no-cuda > ex3-02.log &
+nohup python -u train_ex.py  --env-version 3 --rnn-hidden 108 --sec 0.1 --id "03" --init-episode 100 --batch-size 256 --action-noise 0.5 --memory-size 100000 --threads 10 --epochs 100 --interval 6.0 --no-cuda > ex3-03.log &
+// rewardContact = -10.0 no rewardW
+nohup python -u train_ex.py  --env-version 3 --rnn-hidden 108 --sec 0.1 --id "04" --init-episode 100 --batch-size 256 --action-noise 0.5 --memory-size 100000 --threads 10 --epochs 100 --interval 6.0 --no-cuda > ex3-04.log &

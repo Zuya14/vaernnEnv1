@@ -99,10 +99,13 @@ class vaernnEnv1(gym.Env):
 
         rewardMove = self.sim.vy
 
+        rewardW = -abs(self.sim.w) * 4.0 / math.pi
+        
         # rewardDirection = math.cos(self.sim.action[1])
 
-        reward = rewardContact + rewardMove
+        # reward = rewardContact + rewardMove
         # reward = rewardContact + rewardMove + rewardDirection
+        reward = rewardContact + rewardMove + rewardW
 
         return reward
 
