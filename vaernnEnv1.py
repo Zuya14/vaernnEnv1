@@ -83,7 +83,7 @@ class vaernnEnv1(gym.Env):
         return observation, reward, done, {}
 
     def getRelativeTgt(self, tgt):
-        x, y, _ = self.sim.getState()
+        x, y, _, _, _, _ = self.sim.getState()
         tgtY = tgt[1] - y
 
         return tgtY
@@ -97,21 +97,21 @@ class vaernnEnv1(gym.Env):
     def get_reward(self):
         isComtact = self.sim.isContacts()
 
-        # rewardContact = -1.0 if isComtact else 0.0
+        rewardContact = -1.0 if isComtact else 0.0
         # rewardContact = -100.0 if isComtact else 0.0
         # rewardContact = -10.0 if isComtact else 0.0
         # rewardContact = -5.0 if isComtact else 0.0
-        rewardContact = -1.0 -abs(self.sim.action[0]) if isComtact else 0.0
+        # rewardContact = -1.0 -abs(self.sim.action[0]) if isComtact else 0.0
 
         rewardMove = self.sim.vy
 
-        rewardW = -abs(self.sim.w) * 4.0 / math.pi
+        # rewardW = -abs(self.sim.w) * 4.0 / math.pi
         
         # rewardDirection = math.cos(self.sim.action[1])
 
-        # reward = rewardContact + rewardMove
+        reward = rewardContact + rewardMove
         # reward = rewardContact + rewardMove + rewardDirection
-        reward = rewardContact + rewardMove + rewardW
+        # reward = rewardContact + rewardMove + rewardW
 
         return reward
 

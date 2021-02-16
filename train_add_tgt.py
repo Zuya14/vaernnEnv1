@@ -318,11 +318,16 @@ if __name__ == '__main__':
     parser.add_argument("--interval", type=float, default=3.0)
     parser.add_argument('--no-init-train', action='store_true')
 
+    parser.add_argument('--no-cuda', action='store_true')
+
     args = parser.parse_args()
+
+    if args.no_cuda:
+        device = 'cpu'
 
     interval = args.interval
 
-    out_dir = './result' 
+    out_dir = './result_tgt' 
 
     if args.id != '':
         out_dir += '/' + args.id
@@ -455,7 +460,7 @@ if __name__ == '__main__':
 
             env.reset(clientReset=False, dynamic_counter=dynamic_counter, interval=interval)
             observation = env.observe()[:1080]
-            relativeTgt = env.getRelativeTgt(tgtPos)        
+            relativeTgt = torch.tensor([env.getRelativeTgt(tgtPos)])        
 
             old_actions = torch.tensor([env.sim.action], device=device).view(1, 1, -1)
             old_states  = vae_train.vae(torch.tensor([observation], device=device).view(-1, 1, 1080))[1].view(1, 1, -1)
@@ -466,7 +471,8 @@ if __name__ == '__main__':
             # while True:
             for i in range(1, max_step+1):
 
-                state = vae_train.vae(torch.tensor([observation], device=device).view(-1, 1, 1080))[1].view(1, 1, -1)
+                state = vae_train.vae(torch.tensor([observation], device=device).view(-1, 1, 1080))[1].view(1, 1, -1)       
+                state = torch.cat([state, relativeTgt.view(1, 1, -1)], dim=-1) 
 
                 diff_action = planner(rnn_train.rnn, reward_train.rewardModel, old_actions, old_states, state, args.planning_horizon, args.max_iters, args.candidates, args.top_candidates, args.sec)
 
@@ -474,9 +480,7 @@ if __name__ == '__main__':
                 diff_action.clamp_(min=-1.0, max=1.0)
                 
                 next_observation, reward, done, _ = env.step(diff_action.cpu().numpy())
-                relativeTgt = env.getRelativeTgt(tgtPos)       
-
-                state = torch.cat([state, relativeTgt.view(1, 1, -1)], dim=-1) 
+                relativeTgt = torch.tensor([env.getRelativeTgt(tgtPos)])        
 
                 action = torch.tensor([env.sim.action.astype(np.float32)], device=device).view(1, 1, -1).float()
                 old_actions = torch.cat([old_actions, action], dim=1)
@@ -534,7 +538,7 @@ if __name__ == '__main__':
 
                 env.reset(clientReset=False, dynamic_counter=dynamic_counter, interval=interval)
                 observation = env.observe()[:1080]
-                relativeTgt = env.getRelativeTgt(tgtPos)       
+                relativeTgt = torch.tensor([env.getRelativeTgt(tgtPos)])        
                 
                 old_actions = torch.tensor([env.sim.action], device=device).view(1, 1, -1)
                 old_states  = vae_train.vae(torch.tensor([observation], device=device).view(-1, 1, 1080))[1].view(1, 1, -1)
@@ -554,13 +558,12 @@ if __name__ == '__main__':
                 for _ in range(max_step):
 
                     state = vae_train.vae(torch.tensor([observation], device=device).view(-1, 1, 1080))[1].view(1, 1, -1)
+                    state = torch.cat([state, relativeTgt.view(1, 1, -1)], dim=-1) 
 
                     diff_action = planner(rnn_train.rnn, reward_train.rewardModel, old_actions, old_states, state, args.planning_horizon, args.max_iters, args.candidates, args.top_candidates, args.sec)
                     
                     next_observation, reward, done, _ = env.step(diff_action.cpu().numpy())
-                    relativeTgt = env.getRelativeTgt(tgtPos)       
-
-                    state = torch.cat([state, relativeTgt.view(1, 1, -1)], dim=-1) 
+                    relativeTgt = torch.tensor([env.getRelativeTgt(tgtPos)])        
 
                     action = torch.tensor([env.sim.action.astype(np.float32)], device=device).view(1, 1, -1).float()
                     old_actions = torch.cat([old_actions, action], dim=1)
@@ -604,7 +607,7 @@ if __name__ == '__main__':
                 latent2 = torch.cat([z2.view(args.test_batch_size, 1, -1), tgts2.view(args.test_batch_size, 1, -1)], dim=-1)
 
                 # inp = z[:, 0:args.chunk_size, :]
-                inp = lanent[:, 0:args.chunk_size, :]
+                inp = latent[:, 0:args.chunk_size, :]
                 out = inp
 
                 for i in range(args.test_predict_step):
@@ -616,7 +619,7 @@ if __name__ == '__main__':
                     new_inp = torch.cat([inp, predict], dim=1)
                     inp = new_inp[:, 1:, :]
 
-                recon_predict = vae_train.vae.decoder(out)
+                recon_predict = vae_train.vae.decoder(out[:, :, :-1])
 
             # zs = torch.cat([z, z2], dim=1)
             zs = torch.cat([latent, latent2], dim=1)
