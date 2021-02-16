@@ -82,6 +82,12 @@ class vaernnEnv1(gym.Env):
 
         return observation, reward, done, {}
 
+    def getRelativeTgt(self, tgt):
+        x, y, _ = self.sim.getState()
+        tgtY = tgt[1] - y
+
+        return tgtY
+
     def observe(self):
         return self.sim.observe(self.lidar)
 
