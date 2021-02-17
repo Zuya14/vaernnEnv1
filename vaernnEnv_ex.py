@@ -91,11 +91,11 @@ class vaernnEnv_ex(gym.Env):
     def get_reward(self):
         isComtact = self.sim.isContacts()
 
-        # rewardContact = -1.0 if isComtact else 0.0
+        rewardContact = -1.0 if isComtact else 0.0
         # rewardContact = -100.0 if isComtact else 0.0
         # rewardContact = -10.0 if isComtact else 0.0
         # rewardContact = -5.0 if isComtact else 0.0
-        rewardContact = -1.0 -abs(self.sim.action[0]) if isComtact else 0.0
+        # rewardContact = -1.0 -abs(self.sim.action[0]) if isComtact else 0.0
 
         rewardMove = self.sim.vy
 

@@ -53,6 +53,7 @@ def planner(action0, points, yaw):
         # print(vys.size())
 
         rewards= torch.zeros(candidates, planning_horizon)
+        reward_contact = torch.zeros(candidates)
 
         for t in range(planning_horizon):
             pt = predict_tensor(pt[:, 0, :, :], actions[:, t, :], sec)
@@ -61,7 +62,10 @@ def planner(action0, points, yaw):
             dist = torch.sqrt(dist)
             min, min_indices = torch.min(dist, dim=1)
 
-            reward_contact = torch.where(min <= 0.25, -100.0*torch.ones_like(min), torch.zeros_like(min))
+            # _reward_contact = torch.where(min <= 0.25, -1.0*torch.ones_like(min), torch.zeros_like(min))
+            _reward_contact = torch.where(min <= 0.5, -1.0*torch.ones_like(min), torch.zeros_like(min))
+            reward_contact = (reward_contact + _reward_contact).clamp_(-1.0, 0.0)
+
             # reward_contact = torch.where(min <= 0.5, -torch.ones_like(min), torch.zeros_like(min))
             # reward_contact = torch.where(min <= 0.25, -torch.ones_like(min)*(1.0 + torch.abs(actions[:, t, 0])), torch.zeros_like(min))
             reward_vy = vys[:, t]
@@ -76,9 +80,10 @@ def planner(action0, points, yaw):
         # print(rewards)
 
         returns = rewards.view(candidates, planning_horizon).sum(dim=1)
-        _, topk = returns.topk(top_candidates, dim=0, largest=True, sorted=False)
+        top_return, topk = returns.topk(top_candidates, dim=0, largest=True, sorted=False)
         best_diff_actions = diff_actions[topk].reshape(top_candidates, planning_horizon, action_size)
         diff_action_mean, diff_action_std_dev = best_diff_actions.mean(dim=0, keepdim=True), best_diff_actions.std(dim=0, unbiased=False, keepdim=True)
+    print(top_return)
       
     return diff_action_mean[0, 0, :].view(action_size)
 
@@ -155,6 +160,28 @@ register(
     entry_point='vaernnEnv1:vaernnEnv1'
 )
 
+register(
+    id='vaernn-v2',
+    entry_point='vaernnEnv2:vaernnEnv2'
+)
+
+register(
+    id='vaernn-ex-v1',
+    entry_point='vaernnEnv_ex:vaernnEnv_ex'
+)
+
+register(
+    id='vaernn-ex1-v1',
+    entry_point='vaernnEnv_ex1:vaernnEnv_ex1'
+)
+
+
+register(
+    id='vaernn-ex2-v1',
+    entry_point='vaernnEnv_ex2:vaernnEnv_ex2'
+)
+
+
 # sec = 0.01
 sec = 0.1
 # sec = 1
@@ -164,16 +191,28 @@ action_size = 3
 optimisation_iters = 10
 candidates = 100
 top_candidates = 10
-planning_horizon = 10
+planning_horizon = 20
 
-env = gym.make('vaernn-v1')
+# envname = 'vaernn-v1'
+# envname = 'vaernn-v2'
+envname = 'vaernn-ex-v1'
+# envname = 'vaernn-ex1-v1'
+# envname = 'vaernn-ex2-v1'
+
+env = gym.make(envname)
 env.setting(sec=sec)
+env.reset(dynamic_counter=-1.0, interval = 6.0)
 
 action = env.sim.action
 observation = env.observe2d()[:1080]
 
 pos, ori = env.sim.getRobotPosInfo()
 yaw = p.getEulerFromQuaternion(ori)[2]
+
+height = 800
+width = 800
+fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')  
+video = cv2.VideoWriter("./simple_action/" + envname + ".mp4", fourcc, 10, (height, width))
 
 while True:
 
@@ -197,14 +236,17 @@ while True:
     # img = lidar_util.imshowLocal(name="simple_action", h=800, w=800, points=predict_observation, maxLen=env.lidar.maxLen, show=False, line=False)
     # img = lidar_util.imshowLocal(name="simple_action", h=800, w=800, points=next_observation, maxLen=env.lidar.maxLen, show=False, line=False, point_color=(0,255,0), preimg=img)
     cv2.imshow("simple_action", img)
+    video.write(img)
 
     observation = next_observation[:1080]
     action = env.sim.action
 
     if done:
         print("done")
-        cv2.waitKey(0)
+        # cv2.waitKey(0)
         break
 
     if cv2.waitKey(1) >= 0:
         break
+
+video.release()

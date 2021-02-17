@@ -115,6 +115,9 @@ class robot_sim:
 
             if self.isContacts():
                 self.done = True
+                
+            if self.robotPos[1] > 6.0:
+                self.done = True
         else:
             self.vx = 0
             self.vy = 0

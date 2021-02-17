@@ -41,9 +41,15 @@ register(
     entry_point='vaernnEnv_ex2:vaernnEnv_ex2'
 )
 
+register(
+    id='vaernn-ex3-v1',
+    entry_point='vaernnEnv_ex3:vaernnEnv_ex3'
+)
+
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
-max_step = 200
+# max_step = 200
+max_step = 150
 dynamic_counter = -1.0
 # interval = 4.0
 interval = 6.0
@@ -341,6 +347,8 @@ if __name__ == '__main__':
         envname = 'vaernn-ex1-v1'
     elif args.env_version == 2:
         envname = 'vaernn-ex2-v1'
+    elif args.env_version == 3:
+        envname = 'vaernn-ex3-v1'
     else:
         envname = 'vaernn-ex-v1'
 
